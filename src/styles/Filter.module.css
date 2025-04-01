@@ -1,0 +1,31 @@
+.filterMainContainer {
+    width: 100%;
+    margin-top: 7rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-inline: 4rem;
+}
+
+.filterButton {
+    width: 8rem;
+    height: 2rem;
+    background-color: var(--textWhite);
+    color: var(--textBlack);
+    border: 2px solid var(--textBlack);
+    font-size: 0.75rem;
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+
+.filterButton:hover {
+    background-color: var(--accent);
+    color: var(--textWhite);
+    border: none;
+}
+
+.selectedButton {
+    background-color: var(--textBlack);
+    color: var(--textWhite);
+    border: none;
+}

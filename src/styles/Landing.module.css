@@ -1,0 +1,53 @@
+.mainContainer {
+    margin-top: 4rem;
+    width: 100%;
+    height: calc(100vh - 4rem);
+    overflow: hidden;
+    position: relative;
+}
+
+.videoContainer {
+    position: relative;
+    height: 100%;
+}
+
+.videoTextDiv {
+    color: var(--textWhite);
+    position: absolute;
+    top: 60%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.videoTextDiv h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+.videoTextDiv p {
+    font-weight: 300;
+
+    overflow: hidden;
+    background: linear-gradient(90deg, #000, #fff, #000);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: shine 4s linear infinite;
+    background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+@keyframes shine {
+    0% {
+        background-position: -500%;
+    }
+
+    100% {
+        background-position: 500%;
+    }
+}

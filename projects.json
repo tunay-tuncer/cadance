@@ -1,0 +1,57 @@
+{
+    "architecture": [
+      {
+        "id": 1,
+        "projectName": "PROJECT 001",
+        "projectPictureUrl": "src/assets/projectImages/villaExterior.jpg"
+      },
+      {
+        "id": 2,
+        "projectName": "PROJECT 002",
+        "projectPictureUrl": "src/assets/projectImages/Interior2PP.png"
+      },
+      {
+        "id": 3,
+        "projectName": "PROJECT 003",
+        "projectPictureUrl": "src/assets/projectImages/S1.1.png"
+      },
+      {
+        "id": 4,
+        "projectName": "PROJECT 004",
+        "projectPictureUrl": "src/assets/projectImages/s1.png"
+      },
+      {
+        "id": 5,
+        "projectName": "PROJECT 005",
+        "projectPictureUrl": "src/assets/projectImages/Sahne1.png"
+      }
+    ],
+    "product": [
+      {
+        "id": 11,
+        "projectName": "PRODUCT 001",
+        "projectPictureUrl": "src/assets/projectImages/villaExterior.jpg"
+      },
+      {
+        "id": 12,
+        "projectName": "PRODUCT 002",
+        "projectPictureUrl": "src/assets/projectImages/Interior2PP.png"
+      },
+      {
+        "id": 13,
+        "projectName": "PRODUCT 003",
+        "projectPictureUrl": "src/assets/projectImages/S1.1.png"
+      },
+      {
+        "id": 14,
+        "projectName": "PRODUCT 004",
+        "projectPictureUrl": "src/assets/projectImages/s1.png"
+      },
+      {
+        "id": 15,
+        "projectName": "PRODUCT 005",
+        "projectPictureUrl": "src/assets/projectImages/Sahne1.png"
+      }
+    ]
+  }
+  

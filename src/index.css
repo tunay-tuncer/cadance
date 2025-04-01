@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --bgDark: #11192C;
+  --bgLight: #ffffff;
+  --textWhite: #ffffff;
+  --textGrey: #474747;
+  --textBlack: #000000;
+  --accent: #2972f5;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bgLight);
+  color: var(--textBlack);
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.main-container {
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  width: 5rem;
+  height: 5rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.4rem;
+  position: absolute;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  margin-top: 4rem;
+  margin-bottom: 10px;
+  background: bgBlack;
+  height: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+}
+
+.home-main-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
