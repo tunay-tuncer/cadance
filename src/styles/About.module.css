@@ -11,6 +11,11 @@
 
 .aboutImage {
     height: 80%;
+    cursor: pointer;
+}
+
+.aboutImage:hover {
+    filter: brightness(120%);
 }
 
 .textDiv {

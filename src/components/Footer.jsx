@@ -1,8 +1,10 @@
+// DEPENDENCIES
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import styles from "../styles/Footer.module.css"
 import { ProjectContext } from '../context/ProjectContext';
 
+// REACT ICONS
 import { TiSocialLinkedin } from "react-icons/ti";
 import { TiSocialPinterest } from "react-icons/ti";
 import { FaInstagram } from "react-icons/fa";

@@ -1,5 +1,8 @@
+// DEPENDENCIES
 import { useEffect, useRef, useState } from "react";
 import styles from "../../styles/Landing.module.css";
+
+// MEDIA
 import video from "../../assets/logoAnimation.webm";
 
 const Landing = () => {
@@ -8,12 +11,14 @@ const Landing = () => {
     const videoTexts = ["ARCHITECTURE", "PRODUCT DESIGN", "3D VISUALIZATION", "RENOVATION"]
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
+    // SETUP FOR AUTOPLAY WHEN LOADED
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.play().catch((error) => console.error("Autoplay prevented:", error));
         }
     }, []);
 
+    // VIDEO TEXT ANIMATION
     useEffect(() => {
         const textInterval = setInterval(() => {
             setCurrentTextIndex((prevIndex) => (prevIndex + 1) % videoTexts.length);

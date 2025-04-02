@@ -1,5 +1,5 @@
+// DEPENDENCIES
 import { Link } from 'react-router'
-
 import styles from "../../styles/About.module.css"
 import image from "../../assets/BlueGlassLogoPNG.png"
 

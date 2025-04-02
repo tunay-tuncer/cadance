@@ -1,7 +1,37 @@
-import processImgUrl from "../../assets/BlueGlassArrowPNG.png"
+// DEPENDENCIES
+import { useEffect, useState } from "react"
 import styles from "../../styles/Process.module.css"
 
+// IMAGES
+import processImgUrl from "../../assets/BlueGlassArrowPNG.png"
+import diagramImage from "../../assets/BlueGlassLogoPNG.png"
+
+import interiorImage from "../../assets/s2.1.png"
+import interiorImageMaterialOverride from "../../assets/s2-MO.png"
+import productImage from "../../assets/LandscapeWMaterial.jpg"
+import productImageMaterialOverride from "../../assets/LandscapeWMaterialOverride.jpg"
+
+// REACT ICONS
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 const Process = () => {
+    const [sliderValue1, setSliderValue1] = useState(50)
+    const [sliderValue2, setSliderValue2] = useState(50)
+
+    const sliderImages = [
+        { image1Url: interiorImage, image2Url: interiorImageMaterialOverride, image1Id: Math.floor(Math.random() * 10000), image2Id: Math.floor(Math.random() * 10000), slider: "slider1" },
+        { image1Url: productImage, image2Url: productImageMaterialOverride, image1Id: Math.floor(Math.random() * 10000), image2Id: Math.floor(Math.random() * 10000), slider: "slider2" }
+    ]
+
+    // DETERMINE SLIDER ID - SET SLIDER VALUE
+    const handleSliderValue = (e, sliderId) => {
+        if (sliderId === "slider1") {
+            setSliderValue1(e.target.value);
+        } else {
+            setSliderValue2(e.target.value);
+        }
+    };
+
     return (
         <div className={styles.processMainContainer}>
             <div id='process' className={styles.firstStepContainer}>
@@ -18,7 +48,57 @@ const Process = () => {
                 <div className={styles.textContainer}>
                     <p>Once the foundation is set, we explore multiple design directions through 3D sketches, massing studies, and spatial compositions. At this stage, we test form, scale, and proportion while ensuring the design aligns with practical constraints. Our iterative approach allows flexibility, encouraging refinement and exploration before locking in a concept.</p>
                 </div>
+                <div className={styles.diagramContainer}>
+                    <img src={diagramImage} className={styles.diagramImage} alt="" />
+                    <img src={diagramImage} className={styles.diagramImage} alt="" />
+                    <img src={diagramImage} className={styles.diagramImage} alt="" />
+                </div>
             </div>
+
+            <div className={styles.thirdStepContainer}>
+                <h2 className="homepageHeading">MODELLING AND VISUALIZATION</h2>
+                <div className={styles.textContainer}>
+                    <p>With a clear concept in place, we move into the technical phase, building precise 3D models in various softwares. Here, we refine materiality, spatial relationships, and construction details, ensuring that the project is both aesthetically pleasing and functionally sound. This phase also allows for early visualization, helping to communicate the essence of the design effectively.</p>
+                    <ul>
+                        Once the model is complete, we bring the project to life with high-quality renders and visual storytelling. We focus on:
+
+                        <li>
+                            <strong>Lighting & Atmosphere:</strong> Creating realistic and compelling environments.
+                        </li>
+                        <li>
+                            <strong>Material Realism:</strong> Showcasing textures, reflections, and finishes accurately.
+
+                        </li>
+                        <li>
+                            <strong>Composition & Perspective:</strong> Creating realistic and compelling environments.
+                        </li>
+                    </ul>
+
+                </div>
+
+                <ul className={styles.imageSliderMainContainer}>
+                    {sliderImages.map((item, id) => (
+                        <li className={styles.sliderLi} key={id}>
+                            <img className={styles.sliderImage1} src={item.image1Url} alt="" />
+
+                            <img className={styles.sliderImage2} src={item.image2Url} alt="" style={{ width: `${item.slider === "slider1" ? sliderValue1 : sliderValue2}%` }} />
+
+                            <input type="range" min={0} max={100} onChange={(e) => handleSliderValue(e, item.slider)}
+                                className={styles.slider} value={item.slider === "slider1" ? sliderValue1 : sliderValue2} />
+
+                            <div className={styles.horizontalLine} style={{ left: item.slider === "slider1" ? `${sliderValue1}%` : `${sliderValue2}%` }}>
+                                <div className={styles.iconContainer}>
+                                    <FaChevronLeft />
+                                    <FaChevronRight />
+                                </div>
+                            </div>
+
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+
         </div>
     )
 }

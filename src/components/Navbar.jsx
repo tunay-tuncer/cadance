@@ -1,3 +1,4 @@
+// DEPENDENCIES
 import { useContext, useState } from 'react'
 import { Link } from 'react-router'
 import { ProjectContext } from '../context/ProjectContext';
