@@ -1,57 +1,71 @@
 {
     "architecture": [
-      {
-        "id": 1,
-        "projectName": "PROJECT 001",
-        "projectPictureUrl": "src/assets/projectImages/villaExterior.jpg"
-      },
-      {
-        "id": 2,
-        "projectName": "PROJECT 002",
-        "projectPictureUrl": "src/assets/projectImages/Interior2PP.png"
-      },
-      {
-        "id": 3,
-        "projectName": "PROJECT 003",
-        "projectPictureUrl": "src/assets/projectImages/S1.1.png"
-      },
-      {
-        "id": 4,
-        "projectName": "PROJECT 004",
-        "projectPictureUrl": "src/assets/projectImages/s1.png"
-      },
-      {
-        "id": 5,
-        "projectName": "PROJECT 005",
-        "projectPictureUrl": "src/assets/projectImages/Sahne1.png"
-      }
+        {
+            "id": 1,
+            "projectName": "PROJECT 001",
+            "projectPictureUrl": "src/assets/projectImages/villaExterior.jpg",
+            "client": "CLIENT 001",
+            "location": "LOCATION 001",
+            "year": "2021"
+        },
+        {
+            "id": 2,
+            "projectName": "PROJECT 002",
+            "projectPictureUrl": "src/assets/projectImages/Interior2PP.png",
+            "client": "CLIENT 002",
+            "location": "LOCATION 002",
+            "year": "2021"
+        },
+        {
+            "id": 3,
+            "projectName": "PROJECT 003",
+            "projectPictureUrl": "src/assets/projectImages/S1.1.png",
+            "client": "CLIENT 003",
+            "location": "LOCATION 003",
+            "year": "2022"
+        },
+        {
+            "id": 4,
+            "projectName": "PROJECT 004",
+            "projectPictureUrl": "src/assets/projectImages/s1.png",
+            "client": "CLIENT 004",
+            "location": "LOCATION 004",
+            "year": "2022"
+        },
+        {
+            "id": 5,
+            "projectName": "PROJECT 005",
+            "projectPictureUrl": "src/assets/projectImages/Sahne1.png",
+            "client": "CLIENT 005",
+            "location": "LOCATION 005",
+            "year": "2022"
+        }
     ],
     "product": [
-      {
-        "id": 11,
-        "projectName": "PRODUCT 001",
-        "projectPictureUrl": "src/assets/projectImages/villaExterior.jpg"
-      },
-      {
-        "id": 12,
-        "projectName": "PRODUCT 002",
-        "projectPictureUrl": "src/assets/projectImages/Interior2PP.png"
-      },
-      {
-        "id": 13,
-        "projectName": "PRODUCT 003",
-        "projectPictureUrl": "src/assets/projectImages/S1.1.png"
-      },
-      {
-        "id": 14,
-        "projectName": "PRODUCT 004",
-        "projectPictureUrl": "src/assets/projectImages/s1.png"
-      },
-      {
-        "id": 15,
-        "projectName": "PRODUCT 005",
-        "projectPictureUrl": "src/assets/projectImages/Sahne1.png"
-      }
+        {
+            "id": 11,
+            "projectName": "PRODUCT 001",
+            "projectPictureUrl": "src/assets/projectImages/villaExterior.jpg"
+        },
+        {
+            "id": 12,
+            "projectName": "PRODUCT 002",
+            "projectPictureUrl": "src/assets/projectImages/Interior2PP.png"
+        },
+        {
+            "id": 13,
+            "projectName": "PRODUCT 003",
+            "projectPictureUrl": "src/assets/projectImages/S1.1.png"
+        },
+        {
+            "id": 14,
+            "projectName": "PRODUCT 004",
+            "projectPictureUrl": "src/assets/projectImages/s1.png"
+        },
+        {
+            "id": 15,
+            "projectName": "PRODUCT 005",
+            "projectPictureUrl": "src/assets/projectImages/Sahne1.png"
+        }
     ]
-  }
-  
+}

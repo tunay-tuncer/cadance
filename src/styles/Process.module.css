@@ -144,3 +144,20 @@ strong {
     transform: translateX(-50%);
     color: var(--textWhite);
 }
+
+.renderStepsDiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.renderStep {
+    width: 20%;
+    height: 3rem;
+    border: 1px solid black;
+    color: var(--textBlack);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

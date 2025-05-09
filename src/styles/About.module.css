@@ -73,3 +73,13 @@
     left: 0;
     width: 100%;
 }
+
+@media (max-width:768px) {
+    .textDiv {
+        padding-bottom: 0;
+    }
+
+    .aboutImage {
+        height: 40%;
+    }
+}

@@ -17,10 +17,7 @@ const About = () => {
                 <Link to={"/portfolio"} className={styles.portfolioLinkButton}>EXPLORE OUR PORTOLIO</Link>
             </div>
 
-            <div className="ProcessSection">
-
-            </div>
-        </div>
+        </div >
     )
 }
 

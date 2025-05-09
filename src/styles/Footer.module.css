@@ -8,6 +8,8 @@
     padding: 2rem 4rem;
     background-color: var(--textBlack);
     overflow-y: hidden;
+    bottom: 0;
+    z-index: 100;
 }
 
 .footerMainContainer a {
@@ -49,18 +51,22 @@
     color: var(--accent) !important;
 }
 
+.portfolioContainer {
+    height: 100%;
+}
+
 .socialMediaMainContainer {
-    transform: translateY(calc(50% - 1rem));
+    position: relative;
+    width: 25rem;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
 }
 
 .socialMediaContainer {
-    height: 2rem;
+    width: 100%;
     display: flex;
-    gap: 0.5rem;
+    justify-content: space-between;
 }
 
 .socialMediaContainer svg {
@@ -69,6 +75,15 @@
 }
 
 .legalText {
+    width: 100%;
+    position: absolute;
     font-size: 0.75rem;
+    bottom: 0;
     color: var(--textGrey);
+    text-align: center;
 }
+
+/* 
+@media (max-width:768px) {
+    
+} */

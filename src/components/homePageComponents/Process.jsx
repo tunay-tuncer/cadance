@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import styles from "../../styles/Process.module.css"
 
-// IMAGES
+// MEDIA
 import processImgUrl from "../../assets/BlueGlassArrowPNG.png"
 import diagramImage from "../../assets/BlueGlassLogoPNG.png"
 
@@ -61,17 +61,13 @@ const Process = () => {
                     <p>With a clear concept in place, we move into the technical phase, building precise 3D models in various softwares. Here, we refine materiality, spatial relationships, and construction details, ensuring that the project is both aesthetically pleasing and functionally sound. This phase also allows for early visualization, helping to communicate the essence of the design effectively.</p>
                     <ul>
                         Once the model is complete, we bring the project to life with high-quality renders and visual storytelling. We focus on:
+                        <div className={styles.renderStepsDiv}>
+                            <div className={styles.renderStep}>Model Topology</div>
+                            <div className={styles.renderStep}>Lighting and Atmosphere</div>
+                            <div className={styles.renderStep}>Material Realism</div>
+                            <div className={styles.renderStep}>Composition and Perspective</div>
+                        </div>
 
-                        <li>
-                            <strong>Lighting & Atmosphere:</strong> Creating realistic and compelling environments.
-                        </li>
-                        <li>
-                            <strong>Material Realism:</strong> Showcasing textures, reflections, and finishes accurately.
-
-                        </li>
-                        <li>
-                            <strong>Composition & Perspective:</strong> Creating realistic and compelling environments.
-                        </li>
                     </ul>
 
                 </div>

@@ -1,6 +1,6 @@
 // DEPENDENCIES
 import { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
 import styles from "../styles/Footer.module.css"
 import { ProjectContext } from '../context/ProjectContext';
 
@@ -9,12 +9,14 @@ import { TiSocialLinkedin } from "react-icons/ti";
 import { TiSocialPinterest } from "react-icons/ti";
 import { FaInstagram } from "react-icons/fa";
 import { FaBehance } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
     const { navbarItems, selectedNavItem, setSelectedNavItem } = useContext(ProjectContext)
 
     const socialMedia = [
         { icon: <FaInstagram />, url: "https://www.instagram.com" },
+        { icon: <FaXTwitter />, url: "https://www.x.com" },
         { icon: <TiSocialPinterest />, url: "https://tr.pinterest.com" },
         { icon: <FaBehance />, url: "https://www.behance.com" },
         { icon: <TiSocialLinkedin />, url: "https://www.linkedin.com" }

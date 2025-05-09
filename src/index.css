@@ -50,9 +50,15 @@ a {
 }
 
 .logo {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
+  transition: 0.4s ease;
 }
+
+.logo:hover {
+  scale: 0.9;
+}
+
 
 ::-webkit-scrollbar {
   width: 0.4rem;
@@ -63,7 +69,6 @@ a {
 ::-webkit-scrollbar-track {
   margin-top: 4rem;
   margin-bottom: 10px;
-  background: bgBlack;
   height: 100%;
 }
 
@@ -75,4 +80,10 @@ a {
   position: relative;
   width: 100%;
   min-height: 100vh;
+}
+
+@media (max-width:768px) {
+  html {
+    font-size: 12px;
+  }
 }

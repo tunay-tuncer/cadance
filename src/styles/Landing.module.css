@@ -51,3 +51,25 @@
         background-position: 500%;
     }
 }
+
+
+@media (max-width:768px) {
+    .mainContainer {
+        height: 70vh;
+    }
+
+    .videoContainer {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .videoContainer video {
+        height: 100%;
+        transform: translateX(-20%);
+    }
+
+    .videoTextDiv {
+        top: 60%;
+        left: 65%;
+    }
+}

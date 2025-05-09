@@ -3,17 +3,29 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    height: 4rem;
+    min-height: 4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-inline: 4rem;
     z-index: 10;
     background: var(--bgLight);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
 }
 
 a {
+    height: 4rem;
     color: var(--textGrey) !important;
+    display: flex;
+    align-items: center;
+}
+
+
+.leftContainer {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 .linkContainer {
@@ -21,7 +33,9 @@ a {
     color: var(--textGrey);
     display: flex;
     align-items: center;
+    background-color: var(--bgLight);
     gap: 1.5rem;
+    transition: 0.4s ease;
 }
 
 .linkContainer a {
@@ -70,4 +84,58 @@ a {
 .logoContainer h1 {
     font-weight: 600;
     font-size: 1.1rem;
+}
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.rightContainer svg {
+    display: none;
+    height: 100%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: 0.4s ease;
+}
+
+.rightContainer svg:hover {
+    color: var(--accent);
+}
+
+@media (max-width:768px) {
+    .linkContainer {
+        margin-top: 8rem;
+        position: absolute;
+        flex-direction: column;
+        transform: translateY(-100%);
+        width: 100%;
+        left: 0;
+        z-index: -9;
+        height: 12rem;
+        justify-content: space-between;
+        padding-bottom: 2rem;
+        align-items: center;
+        padding-inline: 2rem;
+    }
+
+    .linkContainer a {
+        width: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .linkContainer li {
+        width: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rightContainer svg {
+        display: block;
+    }
 }

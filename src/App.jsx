@@ -3,7 +3,7 @@ import { ProjectContextProvider } from './context/ProjectContext'
 
 import Portfolio from './pages/Portfolio'
 import Home from './pages/Home'
-
+import Project from './pages/Project'
 function App() {
 
   return (
@@ -12,6 +12,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/portfolio' element={<Portfolio />} />
+          <Route path='/project/:id' element={<Project />} />
         </Routes>
       </div>
     </ProjectContextProvider>

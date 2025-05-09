@@ -16,11 +16,12 @@ export const ProjectContextProvider = ({ children }) => {
         { name: "WORK WITH US", id: "workWithUs" }
     ]
 
-    const [selectedProjectType, setSelectedProjectType] = useState("architecture")
+    const [selectedProjectType, setSelectedProjectType] = useState("architecture");
+    const [selectedProject, setSelectedProject] = useState({});
 
 
     return (
-        <ProjectContext.Provider value={{ selectedNavItem, setSelectedNavItem, navbarItems, selectedProjectType, setSelectedProjectType }}>
+        <ProjectContext.Provider value={{ selectedNavItem, setSelectedNavItem, navbarItems, selectedProjectType, setSelectedProjectType, selectedProject, setSelectedProject }}>
             {children}
         </ProjectContext.Provider>
     )
