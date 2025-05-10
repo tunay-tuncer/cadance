@@ -2,43 +2,105 @@
     "architecture": [
         {
             "id": 1,
-            "projectName": "PROJECT 001",
-            "projectPictureUrl": "src/assets/projectImages/villaExterior.jpg",
-            "client": "CLIENT 001",
-            "location": "LOCATION 001",
-            "year": "2021"
+            "projectName": "KADIKÖY BELEDİYESİ",
+            "projectPictureUrl": [
+                "src/assets/projectImages/project1/Görsel_05.jpg",
+                "src/assets/projectImages/project1/Görsel_01.jpg",
+                "src/assets/projectImages/project1/Görsel_03.jpg",
+                "src/assets/projectImages/project1/Görsel_04.jpg",
+                "src/assets/projectImages/project1/Görsel_06.jpg",
+                "src/assets/projectImages/project1/Görsel_08.jpg",
+                "src/assets/projectImages/project1/Görsel_09.jpg",
+                "src/assets/projectImages/project1/Görsel_10.jpg"
+            ],
+            "imageYPosition": 15,
+            "client": "KADIKÖY MUNICIPALITY",
+            "location": "ISTANBUL, TURKEY",
+            "year": "2025",
+            "teamMembers": [
+                "Didem Akyol Altun",
+                "Yenal Akgün",
+                "Buğrahan Eser",
+                "Hande Kocabaş",
+                "Enes Sevinç",
+                "Tunay Ekin Tunçer"
+            ]
         },
         {
             "id": 2,
-            "projectName": "PROJECT 002",
-            "projectPictureUrl": "src/assets/projectImages/Interior2PP.png",
-            "client": "CLIENT 002",
-            "location": "LOCATION 002",
-            "year": "2021"
+            "projectName": "SUSHA BRIDGE",
+            "projectPictureUrl": [
+                "src/assets/projectImages/project2/Susha1.png",
+                "src/assets/projectImages/project2/Susha2.png"
+            ],
+            "imageYPosition": 10,
+            "client": "YÜKSEL PROJE",
+            "location": "SUSHA, AZERBAIJAN",
+            "year": "2022"
         },
         {
             "id": 3,
-            "projectName": "PROJECT 003",
-            "projectPictureUrl": "src/assets/projectImages/S1.1.png",
-            "client": "CLIENT 003",
-            "location": "LOCATION 003",
-            "year": "2022"
+            "projectName": "KOZ MEYHANE",
+            "projectPictureUrl": [
+                "src/assets/projectImages/project3/Interior2PP.png",
+                "src/assets/projectImages/project3/ExteriorPP.png",
+                "src/assets/projectImages/project3/Interior1PP.png"
+            ],
+            "imageYPosition": -15,
+            "client": "KOZ MEYHANE",
+            "location": "IZMIR, TURKEY",
+            "year": "2025"
         },
         {
             "id": 4,
             "projectName": "PROJECT 004",
-            "projectPictureUrl": "src/assets/projectImages/s1.png",
+            "projectPictureUrl": [
+                "src/assets/projectImages/project4/villaExterior.jpg"
+            ],
+            "imageYPosition": -15,
+            "client": "CADANCE",
+            "location": "IZMIR, TURKEY",
+            "year": "2025"
+        },
+        {
+            "id": 5,
+            "projectName": "PROJECT 005",
+            "projectPictureUrl": [
+                "src/assets/projectImages/S1.1.png",
+                "src/assets/projectImages/S1.1.png",
+                "src/assets/projectImages/S1.1.png"
+            ],
+            "imageYPosition": -20,
             "client": "CLIENT 004",
             "location": "LOCATION 004",
             "year": "2022"
         },
         {
-            "id": 5,
-            "projectName": "PROJECT 005",
-            "projectPictureUrl": "src/assets/projectImages/Sahne1.png",
-            "client": "CLIENT 005",
-            "location": "LOCATION 005",
+            "id": 6,
+            "projectName": "PROJECT 006",
+            "projectPictureUrl": [
+                "src/assets/projectImages/s1.png",
+                "src/assets/projectImages/s1.png",
+                "src/assets/projectImages/s1.png"
+            ],
+            "imageYPosition": -10,
+            "client": "CLIENT 006",
+            "location": "LOCATION 006",
             "year": "2022"
+        },
+        {
+            "id": 7,
+            "projectName": "ALTUNAY MARKT",
+            "projectPictureUrl": [
+                "src/assets/projectImages/project6/Sahne1.png",
+                "src/assets/projectImages/project6/Sahne 5.png",
+                "src/assets/projectImages/project6/Sahne 6.png",
+                "src/assets/projectImages/project6/Sahne 7.png"
+            ],
+            "imageYPosition": 15,
+            "client": "ALTUNAY GROCERIES",
+            "location": "GERMANY",
+            "year": "2025"
         }
     ],
     "product": [

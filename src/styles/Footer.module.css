@@ -24,6 +24,7 @@
 }
 
 .footerLogoContainer {
+    width: 25%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -52,12 +53,16 @@
 }
 
 .portfolioContainer {
+    width: 25%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .socialMediaMainContainer {
     position: relative;
-    width: 25rem;
+    width: 25%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -83,7 +88,19 @@
     text-align: center;
 }
 
-/* 
+
 @media (max-width:768px) {
-    
-} */
+    .footerNavItemsContainer{
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .footerLogoContainer h1{
+        display: none;
+    }
+    .socialMediaContainer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+} 
