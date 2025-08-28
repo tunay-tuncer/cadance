@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import {useContext} from "react";
 import { ProjectContext } from "../../context/ProjectContext";
 import styles from "../../styles/Filter.module.css";
 import { IoIosSearch } from "react-icons/io";
 
-const Filter = () => {
+const Filter = ({ searchText, setSearchText }) => {
     const { selectedProjectType, setSelectedProjectType } = useContext(ProjectContext);
 
     const filterButtons = [
@@ -26,9 +26,17 @@ const Filter = () => {
                     {item.name}
                 </button>
             ))}
-            <div className="inputContainer">
-                <input type="text" />
-                <IoIosSearch />
+            <div className={styles.inputContainer}>
+                <input
+                    type="text"
+                    className={styles.filterInput}
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="Search by tags (e.g. istanbul 2025)"
+                />
+                {searchText.length > 0 && (
+                    <p className={styles.deleteButton} onClick={() => setSearchText("")}>x</p>
+                )}
             </div>
         </div>
     );

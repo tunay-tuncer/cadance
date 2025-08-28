@@ -1,5 +1,5 @@
 .footerMainContainer {
-    position: absolute;
+    position: static;
     width: 100%;
     height: 10rem;
     display: flex;
@@ -24,7 +24,6 @@
 }
 
 .footerLogoContainer {
-    width: 25%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -53,8 +52,6 @@
 }
 
 .portfolioContainer {
-    width: 25%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,19 +85,109 @@
     text-align: center;
 }
 
+/* Tablet landscape and below */
+@media (max-width: 1024px) {
+    .footerMainContainer {
+        padding: 1.5rem 2rem;
+    }
+    .socialMediaMainContainer {
+        width: 35%;
+    }
+    .socialMediaContainer svg {
+        width: 1.35rem;
+    }
+    .navLi {
+        font-size: 0.7rem;
+    }
+    .footerLogoContainer h1{
+        display: none;
+    }
+
+}
 
 @media (max-width:768px) {
     .footerNavItemsContainer{
         flex-direction: column;
         gap: 0.5rem;
     }
-    .footerLogoContainer h1{
-        display: none;
-    }
     .socialMediaContainer{
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 1rem;
+        justify-content: space-between;
     }
-} 
+    /* Enhancements for better stacking on small tablets/large phones */
+    .footerMainContainer {
+        padding: 1.25rem 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+        height: auto;
+    }
+    .socialMediaMainContainer {
+        width: 100%;
+        height: auto;
+        gap: 4rem;
+    }
+    .legalText {
+        position: static;
+        margin-top: 0.5rem;
+        font-size: 0.7rem;
+        text-align: center;
+    }
+    .navLi {
+        font-size: 0.7rem;
+    }
+    .footerLogoContainer h1{
+        display: block;
+    }
+}
+
+/* Phone portrait and below */
+@media (max-width: 576px) {
+    .footerMainContainer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem;
+        height: auto;
+    }
+    .footerLogoContainer {
+        height: auto;
+    }
+    .footerNavItemsContainer {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    .socialMediaMainContainer {
+        width: 100%;
+    }
+    .socialMediaContainer {
+        justify-content: center;
+        gap: 0.75rem;
+    }
+    .socialMediaContainer svg {
+        width: 1.25rem;
+    }
+    .legalText {
+        font-size: 0.7rem;
+    }
+
+    .portfolioContainer{
+        font-size: 0.7rem;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+    .footerMainContainer {
+        padding: 0.75rem;
+    }
+    .navLi {
+        font-size: 0.65rem;
+    }
+    .legalText {
+        font-size: 0.65rem;
+    }
+}

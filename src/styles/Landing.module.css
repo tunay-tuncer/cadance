@@ -52,6 +52,16 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .mainContainer {
+        height: 70vh;
+    }
+    .videoTextDiv {
+        top: 60%;
+        left: 80%;
+    }
+}
+
 
 @media (max-width:768px) {
     .mainContainer {

@@ -29,3 +29,72 @@
     color: var(--textWhite);
     border: none;
 }
+
+.inputContainer{
+    position: relative;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filterInput {
+    width: 20rem;
+    height: 100%;
+    outline: none;
+    padding-inline: 1rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+/* Keep accent border while the input is focused (typing) */
+.filterInput:focus {
+    border: 1px solid var(--accent);
+}
+
+/* Optional: for better keyboard accessibility */
+.filterInput:focus-visible {
+    border: 1px solid var(--accent);
+}
+
+.deleteButton{
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    height: 2rem;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s ease;
+}
+
+.deleteButton:hover{
+    background-color: var(--accent);
+    color: var(--textWhite);
+}
+
+@media (max-width: 480px) {
+    .filterMainContainer {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .filterMainContainer button:first-child{
+        width: 100%;
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .filterMainContainer button:nth-child(2){
+        width: 100%;
+        grid-area: 1 / 2 / 2 / 3;
+    }
+    .inputContainer{
+        width: 100%;
+        grid-area: 2 / 1 / 3 / 3;
+    }
+    .filterInput{
+        width: 100%;
+        font-size: 0.85em;
+    }
+}

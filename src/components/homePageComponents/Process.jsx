@@ -1,5 +1,7 @@
 // DEPENDENCIES
 import { useEffect, useState } from "react"
+
+// PAGE COMPONENTS
 import styles from "../../styles/Process.module.css"
 
 // MEDIA
@@ -12,9 +14,24 @@ import productImage from "../../assets/LandscapeWMaterial.jpg"
 import productImageMaterialOverride from "../../assets/LandscapeWMaterialOverride.jpg"
 
 // REACT ICONS
+import { GiMeshBall } from "react-icons/gi";
+import { IoMdFlashlight } from "react-icons/io";
+import { MdOutlineTexture } from "react-icons/md";
+import { IoCameraSharp } from "react-icons/io5";
+
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Process = () => {
+
+    const renderStepTexts = [
+        { initial: <GiMeshBall />, hover: "Model Topology" },
+        { initial: <IoMdFlashlight />, hover: "Lighting and Atmosphere" },
+        { initial: <MdOutlineTexture />, hover: "Material Realism" },
+        { initial: <IoCameraSharp />, hover: "Composition and Perspective" },
+    ]
+
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
     const [sliderValue1, setSliderValue1] = useState(50)
     const [sliderValue2, setSliderValue2] = useState(50)
 
@@ -40,10 +57,10 @@ const Process = () => {
                     <p>At Cadance, our design process is a carefully structured journey that transforms ideas into visually compelling architectural experiences. We believe that every project deserves a unique approach, blending creativity with precision to achieve impactful results.</p>
                     <p>Every project begins with a deep understanding of its purpose, context, and client expectations. Whether it’s an architectural structure, an urban intervention, or a product design, we take the time to analyze the goals, aesthetic direction, and functional requirements. This stage involves research, mood boards, and conceptual sketches to align our vision with the project's objectives.</p>
                 </div>
-                <img src={processImgUrl} alt="" />
+                <img src={processImgUrl} alt="" className={styles.visionImage} />
             </div>
 
-            <div className={styles.secondStepContainer}>
+            {/* <div className={styles.secondStepContainer}>
                 <h2 className="homepageHeading">CONCEPT DEVELOPMENT</h2>
                 <div className={styles.textContainer}>
                     <p>Once the foundation is set, we explore multiple design directions through 3D sketches, massing studies, and spatial compositions. At this stage, we test form, scale, and proportion while ensuring the design aligns with practical constraints. Our iterative approach allows flexibility, encouraging refinement and exploration before locking in a concept.</p>
@@ -53,22 +70,22 @@ const Process = () => {
                     <img src={diagramImage} className={styles.diagramImage} alt="" />
                     <img src={diagramImage} className={styles.diagramImage} alt="" />
                 </div>
-            </div>
+            </div> */}
 
             <div className={styles.thirdStepContainer}>
                 <h2 className="homepageHeading">MODELLING AND VISUALIZATION</h2>
                 <div className={styles.textContainer}>
                     <p>With a clear concept in place, we move into the technical phase, building precise 3D models in various softwares. Here, we refine materiality, spatial relationships, and construction details, ensuring that the project is both aesthetically pleasing and functionally sound. This phase also allows for early visualization, helping to communicate the essence of the design effectively.</p>
-                    <ul>
-                        Once the model is complete, we bring the project to life with high-quality renders and visual storytelling. We focus on:
-                        <div className={styles.renderStepsDiv}>
-                            <div className={styles.renderStep}>Model Topology</div>
-                            <div className={styles.renderStep}>Lighting and Atmosphere</div>
-                            <div className={styles.renderStep}>Material Realism</div>
-                            <div className={styles.renderStep}>Composition and Perspective</div>
-                        </div>
 
-                    </ul>
+                    <p>Once the model is complete, we bring the project to life with high-quality renders and visual storytelling.</p>
+
+                    {/*<ul className={styles.renderStepsDiv}>*/}
+                    {/*    {renderStepTexts.map((step, id) => (*/}
+                    {/*        <div className={styles.renderStep} key={id} onMouseEnter={() => setHoveredIndex(id)} onMouseLeave={() => setHoveredIndex(null)}>{hoveredIndex === id ? step.hover : step.initial}</div>*/}
+                    {/*    ))}*/}
+                    {/*</ul>*/}
+
+
 
                 </div>
 

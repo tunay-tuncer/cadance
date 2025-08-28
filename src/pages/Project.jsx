@@ -17,7 +17,11 @@ const Project = () => {
     const { architecture } = ProjectData;
 
     const sliderRef = useRef(null);
-    const [sliderWidth, setSliderWidth] = useState(0);
+    // Use viewport width instead of measuring the slider to decide orientation
+    const [viewportWidth, setViewportWidth] = useState(
+        typeof window !== "undefined" ? window.innerWidth : 1024
+    );
+
     function handleProjectClick(clickedProjectId) {
         const clickedProject = architecture?.find(project => project.id === clickedProjectId);
         setSelectedProject(clickedProject);
@@ -28,37 +32,40 @@ const Project = () => {
         handleProjectClick(Number(location.pathname.split("/")[2]));
     }, []);
 
+    // Keep viewport width in sync on resize
     useEffect(() => {
-        if (sliderRef.current) {
-            const sliderWidth = sliderRef.current.getBoundingClientRect().width;
-            setSliderWidth(sliderWidth);
-            console.log(sliderWidth);
-            console.log(settings.verticalSwiping)
-        }
-    }, [sliderWidth])
+        const onResize = () => setViewportWidth(window.innerWidth);
+        window.addEventListener("resize", onResize, { passive: true });
+        return () => window.removeEventListener("resize", onResize);
+    }, []);
 
+    const isMobile = viewportWidth <= 768;
 
     const settings = {
-        className: "slider variable-width",
+        className: "slider",
         dots: false,
         infinite: false,
         centerMode: false,
-        slidesToShow: sliderWidth > 768 ? 1 : 3,
+        // IMPORTANT: disable variableWidth when vertical to avoid axis issues
+        variableWidth: !isMobile,
+        // Show multiple slides when vertical to avoid empty space
+        slidesToShow: isMobile ? 3 : 1,
         slidesToScroll: 1,
-        variableWidth: true,
         arrows: false,
-        vertical: sliderWidth > 768 ? false : true,
-        verticalSwiping: sliderWidth > 768 ? false : true,
+        vertical: isMobile,
+        verticalSwiping: isMobile,
+        swipeToSlide: true,
+        // adaptiveHeight in vertical mode can cause awkward gaps; keep it off
+        adaptiveHeight: false,
     };
-
 
     return (
         <div className={styles.projectMainContainer}>
             <Navbar />
 
             <div className={styles.mainSlider} ref={sliderRef}>
-
-                <Slider {...settings}>
+                {/* Force re-init when the orientation mode changes */}
+                <Slider key={isMobile ? "vertical" : "horizontal"} {...settings}>
                     <div className={styles.slide}>
                         <h1>{selectedProject?.projectName}</h1>
                         <p>CLIENT</p>

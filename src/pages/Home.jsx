@@ -4,13 +4,9 @@ import { ProjectContext } from '../context/ProjectContext';
 
 // PAGE COMPONENTS
 import Navbar from "../components/Navbar";
-
 import Landing from "../components/homePageComponents/Landing"
 import About from '../components/homePageComponents/About';
 import Process from '../components/homePageComponents/Process';
-import Members from "../components/homePageComponents/Members"
-import WorkWithUs from '../components/homePageComponents/WorkWithUs';
-
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import Footer from '../components/Footer';
 
@@ -45,8 +41,6 @@ const Home = () => {
             <Landing />
             <About />
             <Process />
-            <Members />
-            <WorkWithUs />
             <ScrollToTopButton />
             <Footer />
         </div>

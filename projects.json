@@ -23,7 +23,19 @@
                 "Buğrahan Eser",
                 "Hande Kocabaş",
                 "Enes Sevinç",
+                "Orkun Kıvrak",
                 "Tunay Ekin Tunçer"
+            ],
+            "tags": [
+                "kadikoy belediyesi",
+                "kadikoy municipality",
+                "istanbul",
+                "turkey",
+                "2025",
+                "architecture",
+                "civic",
+                "municipality",
+                "public"
             ]
         },
         {
@@ -36,7 +48,18 @@
             "imageYPosition": 10,
             "client": "YÜKSEL PROJE",
             "location": "SUSHA, AZERBAIJAN",
-            "year": "2022"
+            "year": "2022",
+            "tags": [
+                "susha bridge",
+                "yuksel proje",
+                "susha",
+                "azerbaijan",
+                "2022",
+                "architecture",
+                "bridge",
+                "infrastructure",
+                "engineering"
+            ]
         },
         {
             "id": 3,
@@ -49,7 +72,18 @@
             "imageYPosition": -15,
             "client": "KOZ MEYHANE",
             "location": "IZMIR, TURKEY",
-            "year": "2025"
+            "year": "2025",
+            "tags": [
+                "koz meyhane",
+                "izmir",
+                "turkey",
+                "2025",
+                "architecture",
+                "restaurant",
+                "hospitality",
+                "interior",
+                "exterior"
+            ]
         },
         {
             "id": 4,
@@ -60,7 +94,18 @@
             "imageYPosition": -15,
             "client": "CADANCE",
             "location": "IZMIR, TURKEY",
-            "year": "2025"
+            "year": "2025",
+            "tags": [
+                "project 004",
+                "cadance",
+                "izmir",
+                "turkey",
+                "2025",
+                "architecture",
+                "residential",
+                "villa",
+                "exterior"
+            ]
         },
         {
             "id": 5,
@@ -73,7 +118,15 @@
             "imageYPosition": -20,
             "client": "CLIENT 004",
             "location": "LOCATION 004",
-            "year": "2022"
+            "year": "2022",
+            "tags": [
+                "project 005",
+                "client 004",
+                "location 004",
+                "2022",
+                "architecture",
+                "concept"
+            ]
         },
         {
             "id": 6,
@@ -86,7 +139,15 @@
             "imageYPosition": -10,
             "client": "CLIENT 006",
             "location": "LOCATION 006",
-            "year": "2022"
+            "year": "2022",
+            "tags": [
+                "project 006",
+                "client 006",
+                "location 006",
+                "2022",
+                "architecture",
+                "concept"
+            ]
         },
         {
             "id": 7,
@@ -100,34 +161,19 @@
             "imageYPosition": 15,
             "client": "ALTUNAY GROCERIES",
             "location": "GERMANY",
-            "year": "2025"
+            "year": "2025",
+            "tags": [
+                "altunay markt",
+                "altunay groceries",
+                "germany",
+                "2025",
+                "architecture",
+                "retail",
+                "market",
+                "supermarket",
+                "interior"
+            ]
         }
     ],
-    "product": [
-        {
-            "id": 11,
-            "projectName": "PRODUCT 001",
-            "projectPictureUrl": "src/assets/projectImages/villaExterior.jpg"
-        },
-        {
-            "id": 12,
-            "projectName": "PRODUCT 002",
-            "projectPictureUrl": "src/assets/projectImages/Interior2PP.png"
-        },
-        {
-            "id": 13,
-            "projectName": "PRODUCT 003",
-            "projectPictureUrl": "src/assets/projectImages/S1.1.png"
-        },
-        {
-            "id": 14,
-            "projectName": "PRODUCT 004",
-            "projectPictureUrl": "src/assets/projectImages/s1.png"
-        },
-        {
-            "id": 15,
-            "projectName": "PRODUCT 005",
-            "projectPictureUrl": "src/assets/projectImages/Sahne1.png"
-        }
-    ]
+    "product": []
 }

@@ -4,11 +4,13 @@
     display: flex;
     flex-direction: column;
     gap: 6rem;
-    padding-inline: 4rem;
+    padding-inline: 8rem;
+    margin-bottom: 8rem;
 }
 
-.processMainContainer img {
+.visionImage {
     cursor: pointer;
+    transition: 0.4s ease;
 }
 
 .processMainContainer img:hover {
@@ -39,7 +41,6 @@
 
 .textContainer ul {
     display: flex;
-    flex-direction: column;
     gap: 1rem;
 }
 
@@ -84,7 +85,6 @@ strong {
 
 .imageSliderMainContainer {
     width: 100%;
-    padding-inline: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,6 +97,7 @@ strong {
     display: flex;
     align-items: center;
     overflow: hidden;
+    cursor: grab;
 }
 
 .sliderLi img {
@@ -123,6 +124,13 @@ strong {
     height: 100%;
     z-index: 2;
     opacity: 0;
+    cursor: grab;
+}
+
+/* Make the cursor reflect dragging on both the li and the input */
+.sliderLi:active,
+.imageSliderMainContainer input:active {
+    cursor: grabbing;
 }
 
 .horizontalLine {
@@ -155,9 +163,24 @@ strong {
 .renderStep {
     width: 20%;
     height: 3rem;
-    border: 1px solid black;
+    border: 1px solid var(--accent);
     color: var(--textBlack);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width:768px) {
+    .processMainContainer {
+        margin-top: 8rem;
+    }
+
+    .iconContainer{
+        font-size: 2rem;
+        width: 5rem;
+    }
+
+    .horizontalLine{
+        width: 3px;
+    }
 }

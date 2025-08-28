@@ -9,11 +9,11 @@ export const ProjectContextProvider = ({ children }) => {
     const [selectedNavItem, setSelectedNavItem] = useState("")
 
     const navbarItems = [
-        { logo: logo, id: "video" },
-        { name: "ABOUT", id: "about" },
-        { name: "PROCESS", id: "process" },
-        { name: "MEMBERS", id: "members" },
-        { name: "WORK WITH US", id: "workWithUs" }
+        { logo: logo, id: "video", path:"/" },
+        { name: "ABOUT", id: "about", path:"/" },
+        { name: "PROCESS", id: "process", path:"/" },
+        { name: "MEMBERS", id: "members", path:"/members" },
+        { name: "CONTACT US", id: "workWithUs", path:"/contactUs" }
     ]
 
     const [selectedProjectType, setSelectedProjectType] = useState("architecture");
