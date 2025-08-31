@@ -55,6 +55,11 @@
     margin-bottom: 0.25rem;
 }
 
+.projectMainContainer footer{
+    position: absolute;
+    bottom: 0;
+}
+
 @media (max-width: 768px) {
     .mainSlider{
         height: 100vh;

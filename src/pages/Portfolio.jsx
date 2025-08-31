@@ -3,6 +3,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { Link } from 'react-router'
 import { ProjectContext } from "../context/ProjectContext";
 import styles from "../styles/Portfolio.module.css";
+import supabaseClient from "../config/supabaseClient";
 
 // PAGE COMPONENTS
 import Navbar from "../components/Navbar";
@@ -15,20 +16,32 @@ const Portfolio = () => {
     const [projects, setProjects] = useState([]);
     const [searchText, setSearchText] = useState("");
 
-    // READ PROJECT DATA
     useEffect(() => {
-        fetch("/projects.json")
-            .then((res) => res.json())
-            .then((data) => setProjects(Array.isArray(data?.[selectedProjectType]) ? data[selectedProjectType] : []))
-            .catch((error) => {
-                console.error("Error loading projects:", error);
-                setProjects([]); // fallback on error
-            });
+
+    }, [selectedProjectType])
+
+    useEffect(() => {
+        getInstruments();
     }, [selectedProjectType]);
+
+    async function getInstruments() {
+        const { data, error } = await supabaseClient
+            .from('cadanceTestTable')
+            .select()
+
+        if (error) {
+            console.log(error);
+            return
+        }
+        if (data) {
+            const filteredProjectType = data.filter((item) => item.projectType == selectedProjectType);
+            filteredProjectType.sort((a, b) => a.id - b.id)
+            setProjects(filteredProjectType);
+        }
+    }
 
     // HANDLE PAGE SCROLL WHEN CLICKED ON NAVBAR
     useEffect(() => {
-
         window.scrollTo({
             top: 0,
             left: 0,
@@ -49,7 +62,7 @@ const Portfolio = () => {
         if (!q) return list;
         const terms = q.split(/\s+/);
         return list.filter(p => {
-            const tags = (p.tags || []).map(t => String(t).toLowerCase());
+            const tags = (p.projectDetails.tags || []).map(t => String(t).toLowerCase());
             if (tags.length === 0) return false;
             return terms.every(term => tags.some(tag => tag.includes(term)));
         });
@@ -75,12 +88,12 @@ const Portfolio = () => {
                         <Link to={`/project/${item.id}`} className={styles.projectContainer} key={item.id} onClick={() => handleProjectClick(item.id)}>
                             <img
                                 className={styles.projectImage}
-                                style={{ transform: `translateY(${item.imageYPosition}%)` }}
-                                src={item.projectPictureUrl[0]}
+                                style={{ transform: `translateY(${item.projectDetails.imageYPosition}%)` }}
+                                src={item.projectDetails.projectPictureUrl[0]}
                                 alt=""
                             />
                             <div className={styles.projectDescriptionContainer}>
-                                <h3>{item.projectName}</h3>
+                                <h3>{item.projectDetails.projectName}</h3>
                                 <p>see details</p>
                             </div>
                         </Link>

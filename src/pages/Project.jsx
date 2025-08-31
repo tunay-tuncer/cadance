@@ -2,7 +2,7 @@ import { useEffect, useContext, useRef, useState } from 'react'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "../styles/Project.module.css";
-import ProjectData from "../../projects.json"
+import supabaseClient from "../config/supabaseClient";
 
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import { ProjectContext } from "../context/ProjectContext";
@@ -14,25 +14,41 @@ import "slick-carousel/slick/slick-theme.css";
 const Project = () => {
 
     const { selectedProject, setSelectedProject } = useContext(ProjectContext)
-    const { architecture } = ProjectData;
 
     const sliderRef = useRef(null);
-    // Use viewport width instead of measuring the slider to decide orientation
     const [viewportWidth, setViewportWidth] = useState(
         typeof window !== "undefined" ? window.innerWidth : 1024
     );
 
-    function handleProjectClick(clickedProjectId) {
-        const clickedProject = architecture?.find(project => project.id === clickedProjectId);
-        setSelectedProject(clickedProject);
-        console.log(clickedProject)
-    }
+    const projectId = location.pathname.split("/")[2];
+    const [project, setProject] = useState(null);
 
     useEffect(() => {
-        handleProjectClick(Number(location.pathname.split("/")[2]));
-    }, []);
+        const getProject = async () => {
+            const { data, error } = await supabaseClient
+                .from('cadanceTestTable')
+                .select()
+                .eq('id', projectId)
+                .single();
 
-    // Keep viewport width in sync on resize
+            if (error) {
+                console.log(error);
+                return;
+            }
+            if (data) {
+                setProject(data);
+                setSelectedProject(data);
+            }
+        };
+
+        if (!selectedProject) {
+            getProject();
+        } else {
+            setProject(selectedProject);
+        }
+
+    }, [projectId, selectedProject, setSelectedProject]);
+
     useEffect(() => {
         const onResize = () => setViewportWidth(window.innerWidth);
         window.addEventListener("resize", onResize, { passive: true });
@@ -46,43 +62,40 @@ const Project = () => {
         dots: false,
         infinite: false,
         centerMode: false,
-        // IMPORTANT: disable variableWidth when vertical to avoid axis issues
         variableWidth: !isMobile,
-        // Show multiple slides when vertical to avoid empty space
         slidesToShow: isMobile ? 3 : 1,
         slidesToScroll: 1,
-        arrows: false,
+        arrows: true,
         vertical: isMobile,
         verticalSwiping: isMobile,
         swipeToSlide: true,
-        // adaptiveHeight in vertical mode can cause awkward gaps; keep it off
-        adaptiveHeight: false,
+        speed: 300,
+        swipe: isMobile ? false : true
     };
+
+    if (!project) {
+        return <div>Loading...</div>; // Add a loading state
+    }
 
     return (
         <div className={styles.projectMainContainer}>
             <Navbar />
 
             <div className={styles.mainSlider} ref={sliderRef}>
-                {/* Force re-init when the orientation mode changes */}
                 <Slider key={isMobile ? "vertical" : "horizontal"} {...settings}>
                     <div className={styles.slide}>
-                        <h1>{selectedProject?.projectName}</h1>
+                        <h1>{project?.projectDetails.projectName}</h1>
                         <p>CLIENT</p>
-                        <p className={styles.slideText}>{selectedProject?.client}</p>
+                        <p className={styles.slideText}>{project?.projectDetails.client}</p>
                         <p>LOCATION</p>
-                        <p className={styles.slideText}>{selectedProject?.location}</p>
+                        <p className={styles.slideText}>{project?.projectDetails.location}</p>
                         <p>YEAR</p>
-                        <p className={styles.slideText}>{selectedProject?.year}</p>
-                        <p>{selectedProject.teamMembers && "TEAM MEMBERS"}</p>
-                        <ul>{selectedProject.teamMembers && selectedProject.teamMembers.map((member, id) => (
-                            <p key={id} className={styles.slideText}>{member}</p>
-                        ))}</ul>
+                        <p className={styles.slideText}>{project?.projectDetails.year}</p>
                     </div>
-                    {selectedProject?.projectPictureUrl && selectedProject.projectPictureUrl.map((picture, id) => (
+                    {project?.projectDetails?.projectPictureUrl && project.projectDetails.projectPictureUrl.map((picture, id) => (
                         <div className={styles.slide} key={id}>
                             <img
-                                src={`../${picture}`}
+                                src={picture}
                                 onDragStart={e => e.preventDefault()}
                             />
                         </div>
@@ -97,4 +110,4 @@ const Project = () => {
     )
 }
 
-export default Project
+export default Project;

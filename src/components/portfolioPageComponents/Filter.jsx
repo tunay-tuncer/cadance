@@ -1,7 +1,6 @@
-import {useContext} from "react";
+import { useContext, useEffect } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
 import styles from "../../styles/Filter.module.css";
-import { IoIosSearch } from "react-icons/io";
 
 const Filter = ({ searchText, setSearchText }) => {
     const { selectedProjectType, setSelectedProjectType } = useContext(ProjectContext);

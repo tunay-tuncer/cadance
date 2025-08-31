@@ -133,7 +133,7 @@
             "projectName": "PROJECT 006",
             "projectPictureUrl": [
                 "src/assets/projectImages/s1.png",
-                "src/assets/projectImages/s1.png",
+                "src/assets/projectImages/S1.1.png",
                 "src/assets/projectImages/s1.png"
             ],
             "imageYPosition": -10,
@@ -175,5 +175,25 @@
             ]
         }
     ],
-    "product": []
+    "product": [
+        {
+            "id": 8,
+            "projectName": "ASPAR PIRLANTA",
+            "projectPictureUrl": [
+                "src/assets/productImages/BilezikIsoPhoto-WG-LBG-WBG2.jpg"
+            ],
+            "imageYPosition": -10,
+            "client": "ASPAR PIRLANTA",
+            "location": "IZMIR, TURKEY",
+            "year": "2024",
+            "tags": [
+                "diamond",
+                "ring",
+                "2024",
+                "aspar",
+                "product",
+                "necklace"
+            ]
+        }
+    ]
 }

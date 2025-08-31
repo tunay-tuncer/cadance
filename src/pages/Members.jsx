@@ -7,7 +7,7 @@ const Members = () => {
     const membersList = [
         { id: 0, memberName: "TUNAY EKİN TUNÇER", memberImage: memberPhoto, memberTitle: "HEAD ARCHITECT" },
         { id: 1, memberName: "GÖKCAN AYKAÇ", memberImage: memberPhoto, memberTitle: "HEAD ARCHITECT" },
-        { id: 1, memberName: "ODIN", memberImage: memberPhoto, memberTitle: "HEAD ARCHITECT" }
+        { id: 2, memberName: "ODIN", memberImage: memberPhoto, memberTitle: "HEAD ARCHITECT" }
     ]
 
     return (
