@@ -175,12 +175,22 @@ strong {
         margin-top: 8rem;
     }
 
-    .iconContainer{
+    .iconContainer {
         font-size: 2rem;
         width: 5rem;
     }
 
-    .horizontalLine{
+    .horizontalLine {
         width: 3px;
+    }
+}
+
+@media (max-width:375px) {
+    .processMainContainer {
+        padding-inline: 4rem;
+    }
+
+    .visionImage {
+        width: 100% !important;
     }
 }

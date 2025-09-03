@@ -164,4 +164,20 @@
     .portfolioLinkButton {
         margin-top: 2rem;
     }
+
+    .textDiv p {
+        text-align: left;
+    }
+}
+
+
+@media (max-width:375px) {
+    .aboutMainContainer {
+        padding-inline: 4rem;
+    }
+
+    .textDiv h2 {
+        text-align: center;
+    }
+
 }

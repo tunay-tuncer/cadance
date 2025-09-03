@@ -69,8 +69,7 @@ const Project = () => {
         vertical: isMobile,
         verticalSwiping: isMobile,
         swipeToSlide: true,
-        speed: 300,
-        swipe: isMobile ? false : true
+        speed: 300
     };
 
     if (!project) {
