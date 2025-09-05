@@ -13,7 +13,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Project = () => {
 
-    const { selectedProject, setSelectedProject } = useContext(ProjectContext)
+    const { selectedProject, setSelectedProject } = useContext(ProjectContext);
+    const [isLoading, setIsLoading] = useState(true);
 
     const sliderRef = useRef(null);
     const [viewportWidth, setViewportWidth] = useState(
@@ -23,31 +24,32 @@ const Project = () => {
     const projectId = location.pathname.split("/")[2];
     const [project, setProject] = useState(null);
 
-    useEffect(() => {
-        const getProject = async () => {
-            const { data, error } = await supabaseClient
-                .from('cadanceTestTable')
-                .select()
-                .eq('id', projectId)
-                .single();
+    const getProject = async () => {
+        const { data, error } = await supabaseClient
+            .from('cadanceTestTable')
+            .select()
+            .eq('id', projectId)
+            .single();
 
-            if (error) {
-                console.log(error);
-                return;
-            }
-            if (data) {
-                setProject(data);
-                setSelectedProject(data);
-            }
-        };
-
-        if (!selectedProject) {
-            getProject();
-        } else {
-            setProject(selectedProject);
+        if (error) {
+            console.log(error);
+            return;
         }
+        if (data) {
+            setProject(data);
+            setSelectedProject(data);
+            setIsLoading(false);
+        }
+    };
 
-    }, [projectId, selectedProject, setSelectedProject]);
+
+    useEffect(() => {
+
+
+        getProject();
+        setProject(selectedProject);
+
+    }, []);
 
     useEffect(() => {
         const onResize = () => setViewportWidth(window.innerWidth);
@@ -67,7 +69,7 @@ const Project = () => {
         slidesToScroll: 1,
         arrows: true,
         vertical: isMobile,
-        verticalSwiping: isMobile,
+        verticalSwiping: true,
         swipeToSlide: true,
         speed: 300
     };
@@ -80,7 +82,7 @@ const Project = () => {
         <div className={styles.projectMainContainer}>
             <Navbar />
 
-            <div className={styles.mainSlider} ref={sliderRef}>
+            {!isLoading && <div className={styles.mainSlider} ref={sliderRef}>
                 <Slider key={isMobile ? "vertical" : "horizontal"} {...settings}>
                     <div className={styles.slide}>
                         <h1>{project?.projectDetails.projectName}</h1>
@@ -101,7 +103,7 @@ const Project = () => {
                     ))}
 
                 </Slider>
-            </div>
+            </div>}
 
             <Footer />
             <ScrollToTopButton />
