@@ -68,11 +68,13 @@
 }
 
 @media (max-width: 768px) {
+    .projectMainContainer {
+        height: fit-content;
+        padding-bottom: 0;
+    }
     .mainSlider {
-        height: 100vh;
         display: flex;
         flex-direction: column;
-        gap: 10rem;
     }
 
     .slide {
@@ -90,11 +92,9 @@
         text-align: start;
     }
 
-}
-
-@media (max-width:425px) {
-    .mainSlider {
-        height: 100vh;
+    .projectMainContainer footer {
+        display: none;
     }
 
 }
+
