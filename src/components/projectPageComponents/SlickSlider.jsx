@@ -7,9 +7,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import Loader from "../Loader.jsx"
 
 const SlickSlider = () => {
-    const { selectedProject, setSelectedProject } = useContext(ProjectContext);
+
+    const { selectedProject, setSelectedProject, selectedLanguage } = useContext(ProjectContext);
     const [isLoading, setIsLoading] = useState(true);
 
     const sliderRef = useRef(null);
@@ -19,6 +21,22 @@ const SlickSlider = () => {
 
     const projectId = location.pathname.split("/")[2];
     const [project, setProject] = useState(null);
+
+    const content = {
+        EN: {
+            clientLabel: "CLIENT",
+            locationLabel: "LOCATION",
+            yearLabel: "YEAR"
+        },
+        TR: {
+            clientLabel: "MÜŞTERİ",
+            locationLabel: "KONUM",
+            yearLabel: "YIL"
+        }
+    };
+
+    // Safety check: Default to EN if language is undefined
+    const currentLang = content[selectedLanguage] ? selectedLanguage : "EN";
 
     const getProject = async () => {
         const { data, error } = await supabaseClient
@@ -38,11 +56,9 @@ const SlickSlider = () => {
         }
     };
 
-
     useEffect(() => {
         getProject();
         setProject(selectedProject);
-
     }, []);
 
     useEffect(() => {
@@ -69,7 +85,7 @@ const SlickSlider = () => {
     };
 
     if (!project) {
-        return <div>Loading...</div>; // Add a loading state
+        return <Loader />;
     }
 
     return (
@@ -78,18 +94,23 @@ const SlickSlider = () => {
                 <Slider key={isMobile ? "vertical" : "horizontal"} {...settings}>
                     <div className={styles.slide}>
                         <h1>{project?.projectDetails.projectName}</h1>
-                        <p>CLIENT</p>
+
+                        <p>{content[currentLang].clientLabel}</p>
                         <p className={styles.slideText}>{project?.projectDetails.client}</p>
-                        <p>LOCATION</p>
+
+                        <p>{content[currentLang].locationLabel}</p>
                         <p className={styles.slideText}>{project?.projectDetails.location}</p>
-                        <p>YEAR</p>
+
+                        <p>{content[currentLang].yearLabel}</p>
                         <p className={styles.slideText}>{project?.projectDetails.year}</p>
                     </div>
+
                     {project?.projectDetails?.projectPictureUrl && project.projectDetails.projectPictureUrl.map((picture, id) => (
                         <div className={styles.slide} key={id}>
                             <img
                                 src={picture}
                                 onDragStart={e => e.preventDefault()}
+                                alt=""
                             />
                         </div>
                     ))}

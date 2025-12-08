@@ -12,7 +12,7 @@ import { FaBehance } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
-    const { navbarItems, selectedNavItem, setSelectedNavItem } = useContext(ProjectContext)
+    const { navbarItems, selectedNavItem, selectedLanguage, setSelectedNavItem } = useContext(ProjectContext)
 
     const socialMedia = [
         { icon: <FaInstagram />, url: "https://www.instagram.com" },
@@ -40,7 +40,7 @@ const Footer = () => {
 
             <ul className={styles.footerNavItemsContainer}>
                 {navbarItems.map((item) => (!item.logo &&
-                    <Link to={item.path} key={item.id}> <li className={styles.navLi} onClick={() => handleSelectedNavItem(item.id)}>{item.name}</li></Link>
+                    <Link to={item.path} key={item.id}> <li className={styles.navLi} onClick={() => handleSelectedNavItem(item.id)}>{selectedLanguage == "EN" ? item.nameEn : item.nameTr}</li></Link>
                 ))}
             </ul>
 

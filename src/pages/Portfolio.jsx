@@ -12,17 +12,13 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import Footer from "../components/Footer"
 
 const Portfolio = () => {
-    const { selectedNavItem, selectedProjectType, setSelectedProject, selectedProject } = useContext(ProjectContext)
+    const { selectedNavItem, selectedLanguage, selectedProjectType, setSelectedProject, selectedProject } = useContext(ProjectContext)
     const [projects, setProjects] = useState([]);
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
-
-    }, [selectedProjectType])
-
-    useEffect(() => {
         getInstruments();
-    }, [selectedProjectType]);
+    }, [selectedProjectType, selectedLanguage]);
 
     async function getInstruments() {
         const { data, error } = await supabaseClient
@@ -81,7 +77,7 @@ const Portfolio = () => {
             <ul className={styles.projectsMainContainer}>
                 {filteredProjects.length === 0 ? (
                     <li className={styles.noProjects}>
-                        <p>No project found.</p>
+                        <p>{selectedLanguage == "EN" ? "No project found..." : "Hiç proje bulunamadı..."}</p>
                     </li>
                 ) : (
                     filteredProjects.map((item) => (
@@ -94,7 +90,7 @@ const Portfolio = () => {
                             />
                             <div className={styles.projectDescriptionContainer}>
                                 <h3>{item.projectDetails.projectName}</h3>
-                                <p>see details</p>
+                                <p>{selectedLanguage == "EN" ? "see details" : "detayları görüntüle"}</p>
                             </div>
                         </Link>
                     ))

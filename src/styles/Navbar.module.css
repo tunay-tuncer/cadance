@@ -105,6 +105,33 @@ a {
     color: var(--accent);
 }
 
+.languageDiv {
+    position: relative;
+    font-size: 0.8rem;
+    color: var(--textGrey);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.languageDiv:hover {
+    color: var(--accent);
+}
+
+.languageDiv::before {
+    content: "";
+    position: absolute;
+    bottom: -0.4rem;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.languageDiv:hover::before {
+    width: 100%;
+}
+
 @media (max-width:768px) {
     .linkContainer {
         margin-top: 8rem;

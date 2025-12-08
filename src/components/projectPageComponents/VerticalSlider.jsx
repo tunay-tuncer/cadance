@@ -5,41 +5,63 @@ import supabaseClient from "../../config/supabaseClient";
 import { ProjectContext } from "../../context/ProjectContext";
 
 const VerticalSlider = () => {
-  const { selectedProject, setSelectedProject } = useContext(ProjectContext);
-  const [project, setProject] = useState(null);
+  const { selectedProject, setSelectedProject, selectedLanguage } = useContext(ProjectContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  const projectId = typeof window !== "undefined"
-    ? window.location.pathname.split("/")[2]
-    : null;
+  const projectId = location.pathname.split("/")[2];
+  const [project, setProject] = useState(null);
+
+  const [viewportWidth, setViewportWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
+
+  const content = {
+    EN: {
+      clientLabel: "CLIENT",
+      locationLabel: "LOCATION",
+      yearLabel: "YEAR"
+    },
+    TR: {
+      clientLabel: "MÜŞTERİ",
+      locationLabel: "KONUM",
+      yearLabel: "YIL"
+    }
+  };
+
+  // Safety check: Default to EN if language is undefined
+  const currentLang = content[selectedLanguage] ? selectedLanguage : "EN";
 
   const getProject = async () => {
-    if (!projectId) return;
     const { data, error } = await supabaseClient
-      .from("cadanceTestTable")
+      .from('cadanceTestTable')
       .select()
-      .eq("id", projectId)
+      .eq('id', projectId)
       .single();
 
     if (error) {
-      console.error(error);
+      console.log(error);
       return;
     }
     if (data) {
       setProject(data);
-      setSelectedProject?.(data);
+      setSelectedProject(data);
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    if (selectedProject) {
-      setProject(selectedProject);
-      setIsLoading(false);
-    } else {
-      getProject();
-    }
+    getProject();
+    setProject(selectedProject);
+
   }, []);
+
+  useEffect(() => {
+    const onResize = () => setViewportWidth(window.innerWidth);
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const isMobile = viewportWidth <= 768;
 
   return (
     <>
@@ -76,11 +98,11 @@ const VerticalSlider = () => {
           <>
             <section className={`${styles.slide} vs-slide`} aria-roledescription="slide" aria-label="Project details">
               <h1>{project?.projectDetails?.projectName}</h1>
-              <p>CLIENT</p>
+              <p>{content[currentLang].clientLabel}</p>
               <p className={styles.slideText}>{project?.projectDetails?.client}</p>
-              <p>LOCATION</p>
+              <p>{content[currentLang].locationLabel}</p>
               <p className={styles.slideText}>{project?.projectDetails?.location}</p>
-              <p>YEAR</p>
+              <p>{content[currentLang].yearLabel}</p>
               <p className={styles.slideText}>{project?.projectDetails?.year}</p>
             </section>
 

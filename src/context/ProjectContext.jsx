@@ -5,15 +5,17 @@ export const ProjectContext = createContext({})
 
 export const ProjectContextProvider = ({ children }) => {
     const [projectDetails, setProjectDetails] = useState([
-    ])
-    const [selectedNavItem, setSelectedNavItem] = useState("")
+    ]);
+    const [selectedNavItem, setSelectedNavItem] = useState("");
+
+    const [selectedLanguage, setSelectedLanguage] = useState("TR");
 
     const navbarItems = [
-        { logo: logo, id: "video", path:"/" },
-        { name: "ABOUT", id: "about", path:"/" },
-        { name: "PROCESS", id: "process", path:"/" },
-        { name: "MEMBERS", id: "members", path:"/members" },
-        { name: "CONTACT US", id: "workWithUs", path:"/contactUs" }
+        { logo: logo, id: "video", path: "/" },
+        { nameTr: "HAKKINDA", nameEn: "ABOUT", id: "about", path: "/" },
+        { nameTr: "SÜREÇ", nameEn: "PROCESS", id: "process", path: "/" },
+        { nameTr: "ÜYELER", nameEn: "MEMBERS", id: "members", path: "/members" },
+        { nameTr: "İLETİŞİM", nameEn: "CONTACT US", id: "contactUs", path: "/contactUs" }
     ]
 
     const [selectedProjectType, setSelectedProjectType] = useState("architecture");
@@ -21,7 +23,7 @@ export const ProjectContextProvider = ({ children }) => {
 
 
     return (
-        <ProjectContext.Provider value={{ selectedNavItem, setSelectedNavItem, navbarItems, selectedProjectType, setSelectedProjectType, selectedProject, setSelectedProject }}>
+        <ProjectContext.Provider value={{ selectedNavItem, setSelectedNavItem, selectedLanguage, setSelectedLanguage, navbarItems, selectedProjectType, setSelectedProjectType, selectedProject, setSelectedProject }}>
             {children}
         </ProjectContext.Provider>
     )

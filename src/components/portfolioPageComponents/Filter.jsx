@@ -3,16 +3,17 @@ import { ProjectContext } from "../../context/ProjectContext";
 import styles from "../../styles/Filter.module.css";
 
 const Filter = ({ searchText, setSearchText }) => {
-    const { selectedProjectType, setSelectedProjectType } = useContext(ProjectContext);
+    const { selectedProjectType, selectedLanguage, setSelectedProjectType } = useContext(ProjectContext);
 
     const filterButtons = [
-        { name: "ARCHITECTURE", id: "architecture" },
-        { name: "PRODUCT", id: "product" }
+        { nameTr: "MİMARLIK", nameEn: "ARCHITECTURE", id: "architecture" },
+        { nameTr: "ÜRÜN", nameEn: "PRODUCT", id: "product" }
     ];
 
     const handleSelectedProjectType = (projectType) => {
         setSelectedProjectType(projectType);
     };
+
 
     return (
         <div className={styles.filterMainContainer}>
@@ -22,7 +23,7 @@ const Filter = ({ searchText, setSearchText }) => {
                     className={`${styles.filterButton} ${selectedProjectType === item.id ? styles.selectedButton : ""}`}
                     onClick={() => handleSelectedProjectType(item.id)}
                 >
-                    {item.name}
+                    {selectedLanguage == "EN" ? item.nameEn : item.nameTr}
                 </button>
             ))}
             <div className={styles.inputContainer}>
@@ -31,7 +32,7 @@ const Filter = ({ searchText, setSearchText }) => {
                     className={styles.filterInput}
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    placeholder="Search by tags (e.g. istanbul 2025)"
+                    placeholder={selectedLanguage == "EN" ? "Search by tags (e.g. istanbul 2025)" : "Etiketlere göre ara (ör. istanbul 2025)"}
                 />
                 {searchText.length > 0 && (
                     <p className={styles.deleteButton} onClick={() => setSearchText("")}>x</p>

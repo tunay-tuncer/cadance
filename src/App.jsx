@@ -5,7 +5,7 @@ import Portfolio from './pages/Portfolio'
 import Home from './pages/Home'
 import Project from './pages/Project'
 import Members from "./pages/Members.jsx";
-import WorkWithUs from "./pages/WorkWithUs.jsx";
+import ContactUs from "./pages/ContactUs.jsx";
 function App() {
 
   return (
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/members' element={<Members />} />
-          <Route path='/contactUs' element={<WorkWithUs />} />
+          <Route path='/contactUs' element={<ContactUs />} />
           <Route path='/portfolio' element={<Portfolio />} />
           <Route path='/project/:id' element={<Project />} />
         </Routes>
