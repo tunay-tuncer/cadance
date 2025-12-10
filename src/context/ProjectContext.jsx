@@ -15,7 +15,8 @@ export const ProjectContextProvider = ({ children }) => {
         { nameTr: "HAKKINDA", nameEn: "ABOUT", id: "about", path: "/" },
         { nameTr: "SÜREÇ", nameEn: "PROCESS", id: "process", path: "/" },
         { nameTr: "ÜYELER", nameEn: "MEMBERS", id: "members", path: "/members" },
-        { nameTr: "İLETİŞİM", nameEn: "CONTACT US", id: "contactUs", path: "/contactUs" }
+        { nameTr: "İLETİŞİM", nameEn: "CONTACT US", id: "contactUs", path: "/contactUs" },
+        { nameTr: "PORTFOLYO", nameEn: "PORTFOLIO", id: "portfolio", path: "/portfolio" }
     ]
 
     const [selectedProjectType, setSelectedProjectType] = useState("architecture");

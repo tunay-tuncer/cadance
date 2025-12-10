@@ -44,8 +44,6 @@ const Footer = () => {
                 ))}
             </ul>
 
-            <Link to={"/portfolio"} className={styles.portfolioContainer}>PORTFOLIO</Link>
-
             <div className={styles.socialMediaMainContainer}>
                 <ul className={styles.socialMediaContainer}>
                     {socialMedia.map((media, id) => (

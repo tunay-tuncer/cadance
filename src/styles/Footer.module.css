@@ -39,11 +39,11 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    gap: 1rem;
+    gap: 3rem;
 }
 
 .navLi {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     transition: 0.4s ease;
 }
 
@@ -51,11 +51,6 @@
     color: var(--accent) !important;
 }
 
-.portfolioContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .socialMediaMainContainer {
     position: relative;
@@ -90,31 +85,37 @@
     .footerMainContainer {
         padding: 1.5rem 2rem;
     }
+
     .socialMediaMainContainer {
         width: 35%;
     }
+
     .socialMediaContainer svg {
         width: 1.35rem;
     }
+
     .navLi {
         font-size: 0.7rem;
     }
-    .footerLogoContainer h1{
+
+    .footerLogoContainer h1 {
         display: none;
     }
 
 }
 
 @media (max-width:768px) {
-    .footerNavItemsContainer{
+    .footerNavItemsContainer {
         flex-direction: column;
         gap: 0.5rem;
     }
-    .socialMediaContainer{
+
+    .socialMediaContainer {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
+
     /* Enhancements for better stacking on small tablets/large phones */
     .footerMainContainer {
         padding: 1.25rem 1.5rem;
@@ -122,21 +123,25 @@
         gap: 1rem;
         height: auto;
     }
+
     .socialMediaMainContainer {
         width: 100%;
         height: auto;
         gap: 4rem;
     }
+
     .legalText {
         position: static;
         margin-top: 0.5rem;
         font-size: 0.7rem;
         text-align: center;
     }
+
     .navLi {
         font-size: 0.7rem;
     }
-    .footerLogoContainer h1{
+
+    .footerLogoContainer h1 {
         display: block;
     }
 }
@@ -151,30 +156,36 @@
         padding: 1rem;
         height: auto;
     }
+
     .footerLogoContainer {
         height: auto;
     }
+
     .footerNavItemsContainer {
         width: 100%;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
     }
+
     .socialMediaMainContainer {
         width: 100%;
     }
+
     .socialMediaContainer {
         justify-content: center;
         gap: 0.75rem;
     }
+
     .socialMediaContainer svg {
         width: 1.25rem;
     }
+
     .legalText {
         font-size: 0.7rem;
     }
 
-    .portfolioContainer{
+    .portfolioContainer {
         font-size: 0.7rem;
     }
 }
@@ -184,9 +195,11 @@
     .footerMainContainer {
         padding: 0.75rem;
     }
+
     .navLi {
         font-size: 0.65rem;
     }
+
     .legalText {
         font-size: 0.65rem;
     }

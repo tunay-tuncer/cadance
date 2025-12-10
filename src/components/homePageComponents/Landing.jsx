@@ -1,14 +1,21 @@
 // DEPENDENCIES
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import { ProjectContext } from "../../context/ProjectContext";
 import styles from "../../styles/Landing.module.css";
-
 // MEDIA
 import video from "../../assets/logoAnimation.webm";
 
 const Landing = () => {
     const videoRef = useRef(null);
+    const { selectedLanguage } = useContext(ProjectContext);
 
-    const videoTexts = ["ARCHITECTURE", "PRODUCT DESIGN", "3D VISUALIZATION", "RENOVATION"]
+    const videoTexts = {
+        EN: ["ARCHITECTURE", "PRODUCT DESIGN", "3D VISUALIZATION", "RENOVATION"],
+        TR: ["MİMARLIK", "ÜRÜN TASARIMI", "3D GÖRSELLEŞTİRME", "TADİLAT"]
+    };
+
+    const currentLang = videoTexts[selectedLanguage] ? selectedLanguage : "EN";
+
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
     // SETUP FOR AUTOPLAY WHEN LOADED
@@ -20,18 +27,18 @@ const Landing = () => {
 
     // VIDEO TEXT ANIMATION
     useEffect(() => {
+        const currentList = videoTexts[currentLang];
+
         const textInterval = setInterval(() => {
-            setCurrentTextIndex((prevIndex) => (prevIndex + 1) % videoTexts.length);
+            setCurrentTextIndex((prevIndex) => (prevIndex + 1) % currentList.length);
         }, 4000);
 
         return () => clearInterval(textInterval);
-    }, [])
+    }, [currentLang]); // Updated dependency
 
     return (
         <div id="video" className={styles.mainContainer}>
-
             <div className={styles.videoContainer}>
-
                 <video ref={videoRef} autoPlay loop muted playsInline>
                     <source src={video} type="video/webm" />
                     Your browser does not support the video tag.
@@ -39,11 +46,9 @@ const Landing = () => {
 
                 <div className={styles.videoTextDiv}>
                     <h1>CADANCE</h1>
-                    <p>{videoTexts[currentTextIndex]}</p>
+                    <p>{videoTexts[currentLang][currentTextIndex]}</p>
                 </div>
-
             </div>
-
         </div>
     );
 };

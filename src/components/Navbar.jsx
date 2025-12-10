@@ -41,9 +41,6 @@ const Navbar = () => {
             </div>
 
             <div className={styles.rightContainer}>
-                <Link to={"/portfolio"} className={styles.portfolioContainer}>
-                    <li className={styles.navLi}>{selectedLanguage == "EN" ? "PORTFOLIO" : "PORTFOLYO"}</li>
-                </Link>
                 <IoChevronDown onClick={() => setIsDroppedDown((prev) => !prev)} style={{ transform: isDroppedDown ? "rotateX(180deg)" : "" }} />
                 <div className={styles.languageDiv}>
                     <p onClick={(e) => handleLanguageChange(e)}>{selectedLanguage}</p>
