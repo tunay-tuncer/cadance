@@ -1,11 +1,12 @@
 // DEPENDENCIES
-import {useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/Project.module.css";
 
 // PAGE COMPONENTS
 import Navbar from "../components/Navbar";
 import SlickSlider from "../components/projectPageComponents/SlickSlider";
 import VerticalSlider from "../components/projectPageComponents/VerticalSlider";
+import BackButton from "../components/projectPageComponents/BackButton";
 import Footer from "../components/Footer";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
@@ -27,8 +28,9 @@ const Project = () => {
         <div className={styles.projectMainContainer}>
             <Navbar />
 
-            {isMobile ? <VerticalSlider/> : <SlickSlider/> }
+            {isMobile ? <VerticalSlider /> : <SlickSlider />}
 
+            <BackButton />
             <Footer />
             <ScrollToTopButton />
         </div>

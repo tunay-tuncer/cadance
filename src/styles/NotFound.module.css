@@ -1,0 +1,53 @@
+.notFoundMainDiv {
+    position: relative;
+    height: calc(100vh - 8rem);
+}
+
+.notFoundTextDiv {
+    margin-top: 8rem;
+    height: 100%;
+    padding-inline: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.notFoundButton {
+    position: relative;
+    width: 18rem;
+    height: 3rem;
+    font-size: 1rem;
+    background-color: var(--textBlack);
+    color: var(--textWhite) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    z-index: 1;
+}
+
+.notFoundButton::before {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background-color: var(--accent);
+    transition: all 0.3s ease;
+}
+
+.notFoundButton:hover::before {
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.notFoundMainDiv footer {
+    position: absolute;
+    bottom: 0;
+}
