@@ -19,7 +19,7 @@ const NotFound = () => {
 
         TR: {
             heading: "Kaybolmuş gibisin...",
-            body: "Haritanın çok uzağına gitmişsin, GPS bile kafası karışmış durumda. Burada görülecek hiçbir şey yok, sadece boş pikseller var",
+            body: "Haritanın çok uzağına gitmişsin, GPS'in bile kafası karışmış durumda. Burada görülecek hiçbir şey yok, sadece boş pikseller var",
             button: "BENİ EVE GÖTÜR"
         }
     }
