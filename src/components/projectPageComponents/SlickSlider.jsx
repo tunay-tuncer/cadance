@@ -40,7 +40,7 @@ const SlickSlider = () => {
 
     const getProject = async () => {
         const { data, error } = await supabaseClient
-            .from('cadanceTestTable')
+            .from('cadance_projects')
             .select()
             .eq('id', projectId)
             .single();
@@ -58,8 +58,7 @@ const SlickSlider = () => {
 
     useEffect(() => {
         getProject();
-        setProject(selectedProject);
-    }, []);
+    }, [projectId]);
 
     useEffect(() => {
         const onResize = () => setViewportWidth(window.innerWidth);
@@ -93,19 +92,19 @@ const SlickSlider = () => {
             {!isLoading && <div className={styles.mainSlider} ref={sliderRef}>
                 <Slider key={isMobile ? "vertical" : "horizontal"} {...settings}>
                     <div className={styles.slide}>
-                        <h1>{project?.projectDetails.projectName}</h1>
-
-                        <p>{content[currentLang].clientLabel}</p>
-                        <p className={styles.slideText}>{project?.projectDetails.client}</p>
-
-                        <p>{content[currentLang].locationLabel}</p>
-                        <p className={styles.slideText}>{project?.projectDetails.location}</p>
-
-                        <p>{content[currentLang].yearLabel}</p>
-                        <p className={styles.slideText}>{project?.projectDetails.year}</p>
+                        <div className={styles.projectDetailsContainer}>
+                            <h1>{project?.projectName}</h1>
+                            <p>{content[currentLang].clientLabel}</p>
+                            <p className={styles.slideText}>{project?.client}</p>
+                            <p>{content[currentLang].locationLabel}</p>
+                            <p className={styles.slideText}>{project?.location}</p>
+                            <p>{content[currentLang].yearLabel}</p>
+                            <p className={styles.slideText}>{project?.year}</p>
+                        </div>
+                        {project?.description && <div className={styles.projectDescriptionContainer}>{project?.description?.[currentLang]}</div>}
                     </div>
 
-                    {project?.projectDetails?.projectPictureUrl && project.projectDetails.projectPictureUrl.map((picture, id) => (
+                    {project?.projectPictureUrl && project.projectPictureUrl.map((picture, id) => (
                         <div className={styles.slide} key={id}>
                             <img
                                 src={picture}

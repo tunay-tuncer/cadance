@@ -3,25 +3,25 @@ import { ProjectContext } from "../../context/ProjectContext";
 import styles from "../../styles/Filter.module.css";
 
 const Filter = ({ searchText, setSearchText }) => {
-    const { selectedProjectType, selectedLanguage, setSelectedProjectType } = useContext(ProjectContext);
+    const { isArchitecture, selectedLanguage, setIsArchitecture } = useContext(ProjectContext);
 
     const filterButtons = [
-        { nameTr: "MİMARLIK", nameEn: "ARCHITECTURE", id: "architecture" },
-        { nameTr: "ÜRÜN", nameEn: "PRODUCT", id: "product" }
+        { nameTr: "MİMARLIK", nameEn: "ARCHITECTURE", isArchitecture: true },
+        { nameTr: "ÜRÜN", nameEn: "PRODUCT", isArchitecture: false }
     ];
 
     const handleSelectedProjectType = (projectType) => {
-        setSelectedProjectType(projectType);
+        setIsArchitecture(projectType);
     };
 
 
     return (
         <div className={styles.filterMainContainer}>
-            {filterButtons.map((item) => (
+            {filterButtons.map((item, id) => (
                 <button
-                    key={item.id}
-                    className={`${styles.filterButton} ${selectedProjectType === item.id ? styles.selectedButton : ""}`}
-                    onClick={() => handleSelectedProjectType(item.id)}
+                    key={id}
+                    className={`${styles.filterButton} ${isArchitecture === item.isArchitecture ? styles.selectedButton : ""}`}
+                    onClick={() => handleSelectedProjectType(item.isArchitecture)}
                 >
                     {selectedLanguage == "EN" ? item.nameEn : item.nameTr}
                 </button>

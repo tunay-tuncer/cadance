@@ -12,17 +12,17 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import Footer from "../components/Footer"
 
 const Portfolio = () => {
-    const { selectedNavItem, selectedLanguage, selectedProjectType, setSelectedProject, selectedProject } = useContext(ProjectContext)
+    const { selectedNavItem, selectedLanguage, isArchitecture, setSelectedProject, selectedProject } = useContext(ProjectContext)
     const [projects, setProjects] = useState([]);
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         getInstruments();
-    }, [selectedProjectType, selectedLanguage]);
+    }, [isArchitecture, selectedLanguage]);
 
     async function getInstruments() {
         const { data, error } = await supabaseClient
-            .from('cadanceTestTable')
+            .from('cadance_projects')
             .select()
 
         if (error) {
@@ -30,7 +30,7 @@ const Portfolio = () => {
             return
         }
         if (data) {
-            const filteredProjectType = data.filter((item) => item.projectType == selectedProjectType);
+            const filteredProjectType = data.filter((item) => item.isArchitecture == isArchitecture);
             filteredProjectType.sort((a, b) => a.id - b.id)
             setProjects(filteredProjectType);
         }
@@ -58,7 +58,7 @@ const Portfolio = () => {
         if (!q) return list;
         const terms = q.split(/\s+/);
         return list.filter(p => {
-            const tags = (p.projectDetails.tags || []).map(t => String(t).toLowerCase());
+            const tags = (p.tags || []).map(t => String(t).toLowerCase());
             if (tags.length === 0) return false;
             return terms.every(term => tags.some(tag => tag.includes(term)));
         });
@@ -84,12 +84,12 @@ const Portfolio = () => {
                         <Link to={`/project/${item.id}`} className={styles.projectContainer} key={item.id} onClick={() => handleProjectClick(item.id)}>
                             <img
                                 className={styles.projectImage}
-                                style={{ transform: `translateY(${item.projectDetails.imageYPosition}%)` }}
-                                src={item.projectDetails.projectPictureUrl[0]}
+                                style={{ transform: `translateY(${item.imageYPosition}%)` }}
+                                src={item.projectPictureUrl[0]}
                                 alt=""
                             />
                             <div className={styles.projectDescriptionContainer}>
-                                <h3>{item.projectDetails.projectName}</h3>
+                                <h3>{item.projectName}</h3>
                                 <p>{selectedLanguage == "EN" ? "see details" : "detayları görüntüle"}</p>
                             </div>
                         </Link>

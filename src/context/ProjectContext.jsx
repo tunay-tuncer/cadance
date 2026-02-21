@@ -19,12 +19,12 @@ export const ProjectContextProvider = ({ children }) => {
         { nameTr: "PORTFOLYO", nameEn: "PORTFOLIO", id: "portfolio", path: "/portfolio" }
     ]
 
-    const [selectedProjectType, setSelectedProjectType] = useState("architecture");
+    const [isArchitecture, setIsArchitecture] = useState(true);
     const [selectedProject, setSelectedProject] = useState({});
 
 
     return (
-        <ProjectContext.Provider value={{ selectedNavItem, setSelectedNavItem, selectedLanguage, setSelectedLanguage, navbarItems, selectedProjectType, setSelectedProjectType, selectedProject, setSelectedProject }}>
+        <ProjectContext.Provider value={{ selectedNavItem, setSelectedNavItem, selectedLanguage, setSelectedLanguage, navbarItems, isArchitecture, setIsArchitecture, selectedProject, setSelectedProject }}>
             {children}
         </ProjectContext.Provider>
     )
