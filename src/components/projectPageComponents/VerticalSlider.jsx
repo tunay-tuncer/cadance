@@ -80,9 +80,7 @@ const VerticalSlider = () => {
                 <p>{content[currentLang].yearLabel}</p>
                 <p className={styles.slideText}>{project?.year}</p>
               </div>
-              <div className={styles.projectDescriptionContainer}>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis id eum eveniet ut sapiente iste repellat labore natus ipsum. Repellat, ex veniam fugit ut voluptas distinctio maiores sapiente culpa? Doloremque?
-              </div>
+              {project?.description && <div className={styles.projectDescriptionContainer}>{project?.description?.[currentLang]}</div>}
             </section>
 
             {project?.projectPictureUrl &&

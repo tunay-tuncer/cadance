@@ -13,7 +13,7 @@ const About = () => {
             heading: "CADANCE DESIGN STUDIO",
             description: (
                 <>
-                    At <strong>Cadance</strong>, we blend architecture, design, and visualization to create immersive, high-quality representations of spaces. Inspired by the concept of cadence in music, our work follows a rhythm. Each project harmonizing form, function, and aesthetics.
+                    At <strong>Cadance</strong>, we blend architecture, design, and visualization to create immersive, high-quality representations of spaces. Inspired by the concept of cadance in music, our work follows a rhythm. Each project harmonizing form, function, and aesthetics.
                     <br /><br />
                     With expertise in 3D modeling, rendering, and visualization, we craft compelling architectural narratives that bring ideas to life. Whether it's concept development, urban design, or high-fidelity visualizations, our approach prioritizes innovation, clarity, and impact.
                 </>
