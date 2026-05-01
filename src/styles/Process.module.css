@@ -127,7 +127,6 @@ strong {
     cursor: grab;
 }
 
-/* Make the cursor reflect dragging on both the li and the input */
 .sliderLi:active,
 .imageSliderMainContainer input:active {
     cursor: grabbing;
@@ -172,6 +171,7 @@ strong {
 
 @media (max-width:768px) {
     .processMainContainer {
+        padding-inline: 4rem;
         margin-top: 8rem;
     }
 

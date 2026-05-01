@@ -10,23 +10,23 @@ const About = () => {
 
     const content = {
         EN: {
-            heading: "CADANCE DESIGN STUDIO",
+            heading: "CADANCE STUDIO",
             description: (
                 <>
-                    At <strong>Cadance</strong>, we blend architecture, design, and visualization to create immersive, high-quality representations of spaces. Inspired by the concept of cadance in music, our work follows a rhythm. Each project harmonizing form, function, and aesthetics.
+                    At <strong>Cadance</strong>, by blending architectural design with digital art, we create the most striking and realistic representations of spaces. Drawing inspiration from the concept of cadence in music, our approach treats every project as a rhythm, presenting form, function, and aesthetics in perfect harmony.
                     <br /><br />
-                    With expertise in 3D modeling, rendering, and visualization, we craft compelling architectural narratives that bring ideas to life. Whether it's concept development, urban design, or high-fidelity visualizations, our approach prioritizes innovation, clarity, and impact.
+                    Through our expertise in 3D modeling, photorealistic rendering, and parametric design processes, we craft innovative architectural narratives at every scale, from the conceptual phase to urban design.
                 </>
             ),
             buttonText: "EXPLORE OUR PORTFOLIO"
         },
         TR: {
-            heading: "CADANCE TASARIM STÜDYOSU",
+            heading: "CADANCE STÜDYO",
             description: (
                 <>
-                    <strong>Cadance</strong> olarak, mekanların sürükleyici ve yüksek kaliteli temsillerini oluşturmak için mimari, tasarım ve görselleştirmeyi harmanlıyoruz. Müzikteki kadans kavramından ilham alan çalışmalarımız bir ritmi takip eder; her proje biçim, işlev ve estetiği uyum içinde sunar.
+                    <strong>Cadance</strong> olarak, mimari tasarımı dijital sanatla harmanlayarak mekanların en etkileyici ve gerçekçi temsillerini oluşturuyoruz. Müzikteki kadans kavramından ilham alan çalışma disiplinimiz, her projeyi bir ritimle ele alır; form, işlev ve estetiği kusursuz bir uyum içinde sunar.
                     <br /><br />
-                    3D modelleme, render ve görselleştirme konusundaki uzmanlığımızla, fikirleri hayata geçiren etkileyici mimari anlatılar kurguluyoruz. İster konsept geliştirme, ister kentsel tasarım veya yüksek kaliteli görselleştirmeler olsun, yaklaşımımız yenilik, netlik ve etkiyi ön planda tutar.
+                    Uzmanlığımız olan 3D modelleme, fotogerçekçi render ve parametrik tasarım süreçlerimizle, konsept aşamasından kentsel tasarıma kadar her ölçekte yenilikçi mimari anlatılar kurguluyoruz.
                 </>
             ),
             buttonText: "PORTFOLYOMUZU KEŞFEDİN"
@@ -36,18 +36,18 @@ const About = () => {
     const currentLang = content[selectedLanguage] ? selectedLanguage : "EN";
 
     return (
-        <div id='about' className={styles.aboutMainContainer}>
+        <section id='about' className={styles.aboutMainContainer}>
 
-            <img className={styles.aboutImage} src={image} alt="" />
+            <img className={styles.aboutImage} src={image} alt="Cadance Studio mimari görselleştirme ve parametrik tasarım" />
             <div className={styles.textDiv}>
-                <h2 className="homepageHeading">{content[currentLang].heading}</h2>
+                <h1 className="homepageHeading">{content[currentLang].heading}</h1>
                 <p>
                     {content[currentLang].description}
                 </p>
                 <Link to={"/portfolio"} className={styles.portfolioLinkButton}>{content[currentLang].buttonText}</Link>
             </div>
 
-        </div >
+        </section >
     )
 }
 

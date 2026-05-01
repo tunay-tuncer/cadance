@@ -15,10 +15,10 @@ const Footer = () => {
     const { navbarItems, selectedNavItem, selectedLanguage, setSelectedNavItem } = useContext(ProjectContext)
 
     const socialMedia = [
-        { icon: <FaInstagram />, url: "https://www.instagram.com" },
-        { icon: <FaXTwitter />, url: "https://www.x.com" },
-        { icon: <TiSocialPinterest />, url: "https://tr.pinterest.com" },
-        { icon: <FaBehance />, url: "https://www.behance.com" },
+        { icon: <FaInstagram />, url: "https://www.instagram.com/cadancestudio/" },
+        // { icon: <FaXTwitter />, url: "https://www.x.com" },
+        { icon: <TiSocialPinterest />, url: "https://tr.pinterest.com/cadancestudio/" },
+        // { icon: <FaBehance />, url: "https://www.behance.com" },
         { icon: <TiSocialLinkedin />, url: "https://www.linkedin.com" }
     ]
 
@@ -45,11 +45,11 @@ const Footer = () => {
             </ul>
 
             <div className={styles.socialMediaMainContainer}>
-                <ul className={styles.socialMediaContainer}>
-                    {socialMedia.map((media, id) => (
-                        <a key={id} href={media.url}>{media.icon}</a>
-                    ))}
-                </ul>
+
+                {socialMedia.map((media, id) => (
+                    <a key={id} href={media.url}>{media.icon}</a>
+                ))}
+
                 <p className={styles.legalText}>Legal and policies © 2025  CADANCE. All Rights Reserved.</p>
             </div>
 

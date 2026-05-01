@@ -14,27 +14,37 @@ import Footer from "../components/Footer"
 const Portfolio = () => {
     const { selectedNavItem, selectedLanguage, isArchitecture, setSelectedProject, selectedProject } = useContext(ProjectContext)
     const [projects, setProjects] = useState([]);
+    const [projectsByType, setProjectsByType] = useState([]);
     const [searchText, setSearchText] = useState("");
 
+    //FILTER THE PROJECTS BY TYPE
     useEffect(() => {
-        getInstruments();
-    }, [isArchitecture, selectedLanguage]);
+        if (!projects) return
+        const filteredProjectType = projects.filter((item) => item.isArchitecture == isArchitecture);
+        filteredProjectType.sort((a, b) => a.id - b.id);
+        setProjectsByType(filteredProjectType);
 
-    async function getInstruments() {
-        const { data, error } = await supabaseClient
-            .from('cadance_projects')
-            .select()
+    }, [isArchitecture, projects])
 
-        if (error) {
-            console.log(error);
-            return
+    //FETCH ALL THE PROJECTS
+    useEffect(() => {
+        async function fetchProjects() {
+            const { data, error } = await supabaseClient
+                .from('cadance_projects')
+                .select()
+
+            if (error) {
+                console.log(error);
+                return
+            }
+            if (data) {
+                data.sort((a, b) => a.id - b.id)
+                setProjects(data);
+            }
         }
-        if (data) {
-            const filteredProjectType = data.filter((item) => item.isArchitecture == isArchitecture);
-            filteredProjectType.sort((a, b) => a.id - b.id)
-            setProjects(filteredProjectType);
-        }
-    }
+        fetchProjects();
+    }, [])
+
 
     // HANDLE PAGE SCROLL WHEN CLICKED ON NAVBAR
     useEffect(() => {
@@ -53,7 +63,7 @@ const Portfolio = () => {
 
     // Filter by tags (case-insensitive). All entered terms must match at least one tag each.
     const filteredProjects = useMemo(() => {
-        const list = Array.isArray(projects) ? projects : [];
+        const list = Array.isArray(projectsByType) ? projectsByType : [];
         const q = (searchText || "").toLowerCase().trim();
         if (!q) return list;
         const terms = q.split(/\s+/);
@@ -62,7 +72,7 @@ const Portfolio = () => {
             if (tags.length === 0) return false;
             return terms.every(term => tags.some(tag => tag.includes(term)));
         });
-    }, [projects, searchText]);
+    }, [projectsByType, searchText]);
 
     return (
         <div className={styles.portfolioPage}>

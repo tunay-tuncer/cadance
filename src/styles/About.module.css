@@ -30,7 +30,7 @@
     color: var(--accent);
 }
 
-.textDiv h2 {
+.textDiv h1 {
     font-size: 1.75rem;
     font-weight: 600;
 }
@@ -124,6 +124,11 @@
 @media (max-width: 1024px) {
     .aboutMainContainer {
         height: fit-content;
+        padding-inline: 4rem;
+    }
+
+    .textDiv h2 {
+        text-align: center;
     }
 
     .aboutImage {

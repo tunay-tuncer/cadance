@@ -58,15 +58,11 @@
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 2rem;
 }
 
-.socialMediaContainer {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.socialMediaContainer svg {
+.socialMediaMainContainer svg {
     width: 1.5rem;
     height: auto;
 }
@@ -90,7 +86,7 @@
         width: 35%;
     }
 
-    .socialMediaContainer svg {
+    .socialMediaMainContainer svg {
         width: 1.35rem;
     }
 
@@ -110,7 +106,7 @@
         gap: 0.5rem;
     }
 
-    .socialMediaContainer {
+    .socialMediaMainContainer {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -170,14 +166,11 @@
 
     .socialMediaMainContainer {
         width: 100%;
-    }
-
-    .socialMediaContainer {
         justify-content: center;
         gap: 0.75rem;
     }
 
-    .socialMediaContainer svg {
+    .socialMediaMainContainer svg {
         width: 1.25rem;
     }
 
