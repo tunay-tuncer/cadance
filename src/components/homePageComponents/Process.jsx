@@ -68,7 +68,7 @@ const Process = () => {
                     <p>{content[currentLang].step1P1}</p>
                     <p>{content[currentLang].step1P2}</p>
                 </div>
-                <img src={processImgUrl} alt="" className={styles.visionImage} />
+                <img src={processImgUrl} alt="process-image" className={styles.visionImage} />
             </article>
 
             <article className={styles.thirdStepContainer}>
@@ -82,9 +82,9 @@ const Process = () => {
                 <ul className={styles.imageSliderMainContainer}>
                     {sliderImages.map((item, id) => (
                         <li className={styles.sliderLi} key={id}>
-                            <img className={styles.sliderImage1} src={item.image1Url} alt="" />
+                            <img className={styles.sliderImage1} src={item.image1Url} alt="before-after-image" />
 
-                            <img className={styles.sliderImage2} src={item.image2Url} alt="" style={{ width: `${item.slider === "slider1" ? sliderValue1 : sliderValue2}%` }} />
+                            <img className={styles.sliderImage2} src={item.image2Url} alt="before-after-image" style={{ width: `${item.slider === "slider1" ? sliderValue1 : sliderValue2}%` }} />
 
                             <input type="range" min={0} max={100} onChange={(e) => handleSliderValue(e, item.slider)}
                                 className={styles.slider} value={item.slider === "slider1" ? sliderValue1 : sliderValue2} />

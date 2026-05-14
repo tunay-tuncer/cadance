@@ -109,7 +109,8 @@ const SlickSlider = () => {
                             <img
                                 src={picture}
                                 onDragStart={e => e.preventDefault()}
-                                alt=""
+                                alt="project-main-image"
+                                loading='lazy'
                             />
                         </div>
                     ))}

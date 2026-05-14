@@ -52,7 +52,6 @@ const ContactUs = () => {
                     </ul>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

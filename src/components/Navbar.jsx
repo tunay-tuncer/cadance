@@ -32,7 +32,7 @@ const Navbar = () => {
     return (
         <nav>
             <div className={styles.leftContainer}>
-                <Link to={"/"} onClick={() => handleSelectedNavItem("video")}><img className='logo' src={navbarItems[0].logo} alt="" /></Link>
+                <Link to={"/"} onClick={() => handleSelectedNavItem("video")}><img className='logo' src={navbarItems[0].logo} alt="cadance-logo" /></Link>
                 <ul className={styles.linkContainer} style={{ transform: `${isDroppedDown ? "translateY(4rem)" : ""}` }}>
                     {navbarItems.map((item) => (!item.logo &&
                         <Link to={item.path} key={item.id}> <li className={styles.navLi} onClick={() => handleSelectedNavItem(item.id)}>{selectedLanguage == "EN" ? item.nameEn : item.nameTr}</li></Link>

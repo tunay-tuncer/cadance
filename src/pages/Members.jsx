@@ -22,7 +22,7 @@ const Members = () => {
             <ul className={styles.membersUl}>
                 {membersList.map((member) => (
                     <li key={member.id} className={styles.member}>
-                        <img src={member.memberImage} style={styles.memberPic} alt="" />
+                        <img src={member.memberImage} style={styles.memberPic} alt="cadance-member-img" />
                         <div className={styles.memberTextDiv}>
                             <h2 className={styles.memberName}>{member.memberName}</h2>
                             <p className={styles.memberName}>{selectedLanguage == "EN" ? member.memberTitleEn : member.memberTitleTr}</p>

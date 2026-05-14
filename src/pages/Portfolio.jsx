@@ -10,12 +10,14 @@ import Navbar from "../components/Navbar";
 import Filter from "../components/portfolioPageComponents/Filter";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import Footer from "../components/Footer"
+import PortfolioSkeleton from "../components/projectPageComponents/PortfolioSkeleton";
 
 const Portfolio = () => {
     const { selectedNavItem, selectedLanguage, isArchitecture, setSelectedProject, selectedProject } = useContext(ProjectContext)
     const [projects, setProjects] = useState([]);
     const [projectsByType, setProjectsByType] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     //FILTER THE PROJECTS BY TYPE
     useEffect(() => {
@@ -29,18 +31,21 @@ const Portfolio = () => {
     //FETCH ALL THE PROJECTS
     useEffect(() => {
         async function fetchProjects() {
+            setIsLoading(true);
             const { data, error } = await supabaseClient
                 .from('cadance_projects')
                 .select()
 
             if (error) {
                 console.log(error);
+                setIsLoading(false);
                 return
             }
             if (data) {
                 data.sort((a, b) => a.id - b.id)
                 setProjects(data);
             }
+            setIsLoading(false);
         }
         fetchProjects();
     }, [])
@@ -85,7 +90,9 @@ const Portfolio = () => {
             />
 
             <ul className={styles.projectsMainContainer}>
-                {filteredProjects.length === 0 ? (
+                {isLoading ? (
+                    <PortfolioSkeleton count={6} />
+                ) : filteredProjects.length === 0 ? (
                     <li className={styles.noProjects}>
                         <p>{selectedLanguage == "EN" ? "No project found..." : "Hiç proje bulunamadı..."}</p>
                     </li>
@@ -96,7 +103,8 @@ const Portfolio = () => {
                                 className={styles.projectImage}
                                 style={{ transform: `translateY(${item.imageYPosition}%)` }}
                                 src={item.projectPictureUrl[0]}
-                                alt=""
+                                alt={item.name}
+                                loading="lazy"
                             />
                             <div className={styles.projectDescriptionContainer}>
                                 <h3>{item.projectName}</h3>

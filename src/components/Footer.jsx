@@ -4,23 +4,10 @@ import { Link } from 'react-router'
 import styles from "../styles/Footer.module.css"
 import { ProjectContext } from '../context/ProjectContext';
 
-// REACT ICONS
-import { TiSocialLinkedin } from "react-icons/ti";
-import { TiSocialPinterest } from "react-icons/ti";
-import { FaInstagram } from "react-icons/fa";
-import { FaBehance } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+
 
 const Footer = () => {
-    const { navbarItems, selectedNavItem, selectedLanguage, setSelectedNavItem } = useContext(ProjectContext)
-
-    const socialMedia = [
-        { icon: <FaInstagram />, url: "https://www.instagram.com/cadancestudio/" },
-        // { icon: <FaXTwitter />, url: "https://www.x.com" },
-        { icon: <TiSocialPinterest />, url: "https://tr.pinterest.com/cadancestudio/" },
-        // { icon: <FaBehance />, url: "https://www.behance.com" },
-        { icon: <TiSocialLinkedin />, url: "https://www.linkedin.com" }
-    ]
+    const { navbarItems, selectedNavItem, selectedLanguage, setSelectedNavItem, socialMedia } = useContext(ProjectContext)
 
     const handleSelectedNavItem = (id) => {
         setSelectedNavItem("")
@@ -32,7 +19,7 @@ const Footer = () => {
             <div className={styles.footerLogoContainer}>
 
                 {navbarItems.map((item) => (item.logo &&
-                    <Link key={item.id} to={"/"} className={styles.logo} onClick={() => handleSelectedNavItem(item.id)}><img className='logo' src={item.logo} alt="" /></Link>
+                    <Link key={item.id} to={"/"} className={styles.logo} onClick={() => handleSelectedNavItem(item.id)}><img className='logo' src={item.logo} alt="cadance-logo" /></Link>
                 ))}
 
                 <h1>CADANCE</h1>

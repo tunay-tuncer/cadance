@@ -1,0 +1,122 @@
+.skeletonContainer {
+    position: relative;
+    width: 100%;
+    height: 15rem;
+    overflow: hidden;
+    border-radius: 0.25rem;
+}
+
+.skeletonImage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+.skeletonDescription {
+    position: absolute;
+    left: 0%;
+    top: 100%;
+    width: 25%;
+    height: 100%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 0;
+}
+
+.skeletonTitle {
+    width: 80%;
+    height: 2rem;
+    background: linear-gradient(90deg, #555 25%, #444 50%, #555 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 0.25rem;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Large desktops */
+@media (max-width: 1280px) {
+    .skeletonContainer {
+        height: 16rem;
+    }
+    .skeletonDescription {
+        width: 30%;
+    }
+}
+
+/* Small desktops / large tablets */
+@media (max-width: 1024px) {
+    .skeletonContainer {
+        height: 18rem;
+    }
+    .skeletonDescription {
+        width: 30%;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .skeletonContainer {
+        height: 20rem;
+    }
+    .skeletonDescription {
+        width: 30%;
+    }
+}
+
+/* Landscape tablets and small laptops with short height */
+@media (max-height: 700px) and (min-width: 640px) {
+    .skeletonContainer {
+        height: 14rem;
+    }
+}
+
+/* Between small tablets and large phones */
+@media (max-width: 640px) {
+    .skeletonContainer {
+        height: 18rem;
+    }
+    .skeletonDescription {
+        width: 55%;
+    }
+}
+
+/* Phones */
+@media (max-width: 576px) {
+    .skeletonContainer {
+        height: 22rem;
+    }
+    .skeletonDescription {
+        left: 0;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 40%;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .skeletonContainer {
+        height: 20rem;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+    .skeletonContainer {
+        height: 18rem;
+    }
+}
