@@ -1,14 +1,17 @@
 import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from 'react'
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router'
 import Navbar from "../Navbar"
 import Footer from "../Footer"
+import seoConfig from "../../config/seoConfig"
 
 import styles from "../../styles/NotFound.module.css"
 
 const NotFound = () => {
 
     const { selectedLanguage } = useContext(ProjectContext);
+    const seoData = seoConfig[selectedLanguage].NOTFOUND;
 
     const content = {
         EN: {
@@ -28,6 +31,20 @@ const NotFound = () => {
 
     return (
         <div className={styles.notFoundMainDiv}>
+            <Helmet>
+                <title>{seoData.title}</title>
+                <meta name="description" content={seoData.description} />
+                <meta name="keywords" content={seoData.keywords} />
+                <meta property="og:title" content={seoData.ogTitle} />
+                <meta property="og:description" content={seoData.ogDescription} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={seoData.canonical} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={seoData.ogTitle} />
+                <meta name="twitter:description" content={seoData.ogDescription} />
+                <link rel="canonical" href={seoData.canonical} />
+                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+            </Helmet>
             <Navbar />
 
             <div className={styles.notFoundTextDiv}>

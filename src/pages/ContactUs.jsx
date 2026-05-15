@@ -1,10 +1,11 @@
 //DEPENDENCIES
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { Helmet } from 'react-helmet-async';
 import { ProjectContext } from '../context/ProjectContext';
+import seoConfig from '../config/seoConfig';
 
 // PAGE COMPONENTS
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import styles from "../styles/ContactUs.module.css";
 
 // MEDIA
@@ -13,18 +14,17 @@ import image from "../assets/WindowsLogoFullBlack.22.jpg"
 // REACT ICONS
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
-import { useState } from "react";
 
 const ContactUs = () => {
+    const { selectedLanguage } = useContext(ProjectContext)
+    const seoData = seoConfig[selectedLanguage].CONTACT;
+    const [isVisible, setIsVisible] = useState(false)
+
     const contactInfo = [
         { icon: <IoIosMail />, text: "info@cadancedesign.com", onClick: () => handleMailAddress() },
         { icon: <FaPhone />, text: "+90 553 266 58 04", onClick: () => window.location.href = `tel:+905532665804` },
         { icon: <FaPhone />, text: "+90 507 663 31 52", onClick: () => window.location.href = `tel:+905076633152` }
     ]
-
-    const { selectedLanguage } = useContext(ProjectContext)
-
-    const [isVisible, setIsVisible] = useState(false)
 
     function handleMailAddress() {
         navigator.clipboard.writeText("info@cadancestudio.com");
@@ -36,6 +36,20 @@ const ContactUs = () => {
 
     return (
         <div id='contactUs' className={styles.contactUsMainContainer}>
+            <Helmet>
+                <title>{seoData.title}</title>
+                <meta name="description" content={seoData.description} />
+                <meta name="keywords" content={seoData.keywords} />
+                <meta property="og:title" content={seoData.ogTitle} />
+                <meta property="og:description" content={seoData.ogDescription} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={seoData.canonical} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={seoData.ogTitle} />
+                <meta name="twitter:description" content={seoData.ogDescription} />
+                <link rel="canonical" href={seoData.canonical} />
+                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+            </Helmet>
             <Navbar />
             <div className={styles.contactUsContainer}>
                 <img src={image} alt="" className={styles.contactUsImage} />

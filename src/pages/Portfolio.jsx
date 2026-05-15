@@ -1,7 +1,9 @@
 // DEPENDENCIES
 import { useContext, useEffect, useMemo, useState } from "react";
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router'
 import { ProjectContext } from "../context/ProjectContext";
+import seoConfig from "../config/seoConfig";
 import styles from "../styles/Portfolio.module.css";
 import supabaseClient from "../config/supabaseClient";
 
@@ -14,6 +16,7 @@ import PortfolioSkeleton from "../components/projectPageComponents/PortfolioSkel
 
 const Portfolio = () => {
     const { selectedNavItem, selectedLanguage, isArchitecture, setSelectedProject, selectedProject } = useContext(ProjectContext)
+    const seoData = seoConfig[selectedLanguage].PORTFOLIO;
     const [projects, setProjects] = useState([]);
     const [projectsByType, setProjectsByType] = useState([]);
     const [searchText, setSearchText] = useState("");
@@ -81,6 +84,20 @@ const Portfolio = () => {
 
     return (
         <div className={styles.portfolioPage}>
+            <Helmet>
+                <title>{seoData.title}</title>
+                <meta name="description" content={seoData.description} />
+                <meta name="keywords" content={seoData.keywords} />
+                <meta property="og:title" content={seoData.ogTitle} />
+                <meta property="og:description" content={seoData.ogDescription} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={seoData.canonical} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={seoData.ogTitle} />
+                <meta name="twitter:description" content={seoData.ogDescription} />
+                <link rel="canonical" href={seoData.canonical} />
+                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+            </Helmet>
 
             <Navbar />
 
