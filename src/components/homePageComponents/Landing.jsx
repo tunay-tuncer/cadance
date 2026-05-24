@@ -39,7 +39,7 @@ const Landing = () => {
     return (
         <div id="video" className={styles.mainContainer}>
             <div className={styles.videoContainer}>
-                <video ref={videoRef} autoPlay loop muted playsInline>
+                <video ref={videoRef} autoPlay loop muted playsInline poster="https://res.cloudinary.com/dabmjz0xr/image/upload/q_auto/CadanceMetaImage_uwqmp8.png">
                     <source src={video} type="video/webm" />
                     Your browser does not support the video tag.
                 </video>

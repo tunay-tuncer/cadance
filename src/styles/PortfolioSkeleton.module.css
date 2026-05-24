@@ -41,6 +41,7 @@
     0% {
         background-position: 200% 0;
     }
+
     100% {
         background-position: -200% 0;
     }
@@ -51,6 +52,7 @@
     .skeletonContainer {
         height: 16rem;
     }
+
     .skeletonDescription {
         width: 30%;
     }
@@ -61,6 +63,7 @@
     .skeletonContainer {
         height: 18rem;
     }
+
     .skeletonDescription {
         width: 30%;
     }
@@ -71,6 +74,7 @@
     .skeletonContainer {
         height: 20rem;
     }
+
     .skeletonDescription {
         width: 30%;
     }
@@ -88,6 +92,7 @@
     .skeletonContainer {
         height: 18rem;
     }
+
     .skeletonDescription {
         width: 55%;
     }
@@ -98,6 +103,7 @@
     .skeletonContainer {
         height: 22rem;
     }
+
     .skeletonDescription {
         left: 0;
         top: auto;

@@ -22,14 +22,13 @@ export const ProjectContextProvider = ({ children }) => {
         { nameTr: "SÜREÇ", nameEn: "PROCESS", id: "process", path: "/" },
         { nameTr: "ÜYELER", nameEn: "MEMBERS", id: "members", path: "/members" },
         { nameTr: "İLETİŞİM", nameEn: "CONTACT US", id: "contact", path: "/contact" },
-        { nameTr: "PORTFOLYO", nameEn: "PORTFOLIO", id: "portfolio", path: "/portfolio" }
+        { nameTr: "PORTFOLYO", nameEn: "PORTFOLIO", id: "portfolio", path: "/portfolio" },
+        { nameTr: "FLOW", nameEn: "FLOW", id: "flow", path: "https://flow.cadancestudio.com" }
     ]
 
     const socialMedia = [
         { icon: <FaInstagram />, url: "https://www.instagram.com/cadancestudio/" },
-        // { icon: <FaXTwitter />, url: "https://www.x.com" },
         { icon: <TiSocialPinterest />, url: "https://tr.pinterest.com/cadancestudio/" },
-        // { icon: <FaBehance />, url: "https://www.behance.com" },
         { icon: <TiSocialLinkedin />, url: "https://www.linkedin.com" }
     ]
 

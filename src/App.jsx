@@ -8,6 +8,8 @@ import Portfolio from './pages/Portfolio'
 import Project from './pages/Project'
 import NotFound from './components/projectPageComponents/NotFound.jsx'
 
+import { Analytics } from '@vercel/analytics/react';
+
 function App() {
 
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path='/project/:id' element={<Project />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
+        <Analytics />
       </div>
     </ProjectContextProvider>
   )
