@@ -3,13 +3,18 @@ import styles from "../../styles/Flow.module.css"
 import { MdOutlineCheckBox, MdArrowRight } from "react-icons/md";
 
 import FlowRightSide from "./FlowRightSide";
+import GridBackground from "../GridBackground";
+import { ProjectContext } from "../../context/ProjectContext";
+import { useContext } from "react";
 
 const Flow = () => {
 
+    const { selectedLanguage } = useContext(ProjectContext);
+
     const flowSteps = [
-        { id: 1, text: "Projenizin aşamalarını ve iş akışının nasıl işleyeceğini öğrenin" },
-        { id: 2, text: "Projeye istediğiniz yerden erişin, kimin erişebileceğine karar verin." },
-        { id: 3, text: "Gelişmelerden otomatik mail sistemi ile anında haberdar olun, sürprizleri hayatınızdan çıkarın." },
+        { id: 1, textTr: "Projenizin aşamalarını ve iş akışının nasıl işleyeceğini öğrenin", textEn: "Learn about the stages of your project and how the workflow will proceed" },
+        { id: 2, textTr: "Projeye istediğiniz yerden erişin, kimin erişebileceğine karar verin.", textEn: "Access the project from anywhere you want, and decide who can access it." },
+        { id: 3, textTr: "Gelişmelerden otomatik mail sistemi ile anında haberdar olun, sürprizleri hayatınızdan çıkarın.", textEn: "Stay updated with the latest changes with our automatic email system and eliminate surprises from your life" },
     ]
 
     return (
@@ -18,27 +23,27 @@ const Flow = () => {
             <div className={styles.leftContainer}>
 
                 <div className={styles.headingContainer}>
-                    <h3>CADANCE FLOW // LIVE PROJECT TRACKING</h3>
-                    <h1>Projenizi <span>Uzaktan Yönetin.</span></h1>
+                    <h3>CADANCE FLOW // A NEW ERA</h3>
+                    <h1>{selectedLanguage == "TR" ? "Projenizi" : "Manage Projects"} <span>{selectedLanguage == "TR" ? "Uzaktan Yönetin." : "Remotely"}</span></h1>
                 </div>
 
                 <ul className={styles.flowStepsContainer}>
                     {flowSteps.map((step) => (
                         <li key={step.id} className={styles.stepItem}>
                             <MdOutlineCheckBox />
-                            <p>{step.text}</p>
+                            <p>{selectedLanguage === "TR" ? step.textTr : step.textEn}</p>
                         </li>
                     ))}
                 </ul>
 
                 <a className={styles.linkButton} href="https://flow.cadancestudio.com">
-                    <p>Akışı Keşfedin  </p>
+                    <p>{selectedLanguage === "TR" ? "Akışı Keşfedin" : " Explore the Flow"}</p>
                     <MdArrowRight />
 
                 </a>
             </div>
             <FlowRightSide />
-            <div className={styles.gridBackground}></div>
+            <GridBackground />
         </section>
     )
 }

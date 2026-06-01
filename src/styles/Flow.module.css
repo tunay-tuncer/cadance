@@ -16,18 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.gridBackground {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-image: linear-gradient(to right, var(--gridWhite) 1px, transparent 1px), linear-gradient(to bottom, var(--gridWhite) 1px, transparent 1px);
-    background-size: calc(40rem / 3) calc(40rem / 3);
-    background-position: left top;
-    z-index: 0;
+    overflow: hidden;
 }
 
 .headingContainer h3 {
@@ -78,10 +67,11 @@
     width: 50%;
     display: flex;
     align-items: center;
-    gap: rem;
     transition: 0.4s ease;
     justify-content: space-between;
     overflow: hidden;
+    border: none;
+    outline: none;
 }
 
 .linkButton:hover {
@@ -342,6 +332,10 @@
         min-width: 1.5rem;
     }
 
+    .linkButton {
+        width: 100%;
+    }
+
     .rightContainer {
         width: calc(100% - 6rem);
         height: auto;
@@ -403,7 +397,7 @@
 
 @media (max-width: 450px) {
     .linkButton {
-        min-width: 15rem;
+        width: 100% !important;
     }
 
     .rightContainer {

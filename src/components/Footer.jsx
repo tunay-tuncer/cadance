@@ -1,10 +1,9 @@
 // DEPENDENCIES
-import { useContext, useState } from 'react'
-import { Link } from 'react-router'
-import styles from "../styles/Footer.module.css"
+import { useContext, useState } from 'react';
+import { Link } from 'react-router';
+import styles from "../styles/Footer.module.css";
+import GridBackground from './GridBackground';
 import { ProjectContext } from '../context/ProjectContext';
-
-
 
 const Footer = () => {
     const { navbarItems, selectedNavItem, selectedLanguage, setSelectedNavItem, socialMedia } = useContext(ProjectContext)
@@ -39,6 +38,8 @@ const Footer = () => {
 
                 <p className={styles.legalText}>Legal and policies © 2025  CADANCE. All Rights Reserved.</p>
             </div>
+
+            <GridBackground />
 
         </footer>
     )

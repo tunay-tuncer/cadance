@@ -60,7 +60,7 @@ const FlowRightSide = () => {
             "texturingAndLightingText": "Doku ve Işıklandırma",
             "texturingAndLightingApproval": "Işıklandırma tonu",
             "renderingText": "Render Süreci",
-            "renderingApproval": "Panoramik Rnederlar",
+            "renderingApproval": "Panoramik Renderlar",
             "postProductionText": "Post-Prodüksiyon",
             "postProductionApproval": "LUT ayarları",
             "submitionText": "Teslimat",
