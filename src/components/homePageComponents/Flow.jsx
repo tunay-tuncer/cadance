@@ -24,20 +24,20 @@ const Flow = () => {
 
                 <div className={styles.headingContainer}>
                     <h3>CADANCE FLOW // A NEW ERA</h3>
-                    <h1>{selectedLanguage == "TR" ? "Projenizi" : "Manage Projects"} <span>{selectedLanguage == "TR" ? "Uzaktan Yönetin." : "Remotely"}</span></h1>
+                    <h1>{selectedLanguage == "Türkçe" ? "Projenizi" : "Manage Projects"} <span>{selectedLanguage == "Türkçe" ? "Uzaktan Yönetin." : "Remotely"}</span></h1>
                 </div>
 
                 <ul className={styles.flowStepsContainer}>
                     {flowSteps.map((step) => (
                         <li key={step.id} className={styles.stepItem}>
                             <MdOutlineCheckBox />
-                            <p>{selectedLanguage === "TR" ? step.textTr : step.textEn}</p>
+                            <p>{selectedLanguage === "Türkçe" ? step.textTr : step.textEn}</p>
                         </li>
                     ))}
                 </ul>
 
                 <a className={styles.linkButton} href="https://flow.cadancestudio.com">
-                    <p>{selectedLanguage === "TR" ? "Akışı Keşfedin" : " Explore the Flow"}</p>
+                    <p>{selectedLanguage === "Türkçe" ? "Akışı Keşfedin" : " Explore the Flow"}</p>
                     <MdArrowRight />
 
                 </a>

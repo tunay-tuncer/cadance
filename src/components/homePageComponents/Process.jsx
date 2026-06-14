@@ -29,7 +29,7 @@ const Process = () => {
 
     // 4. Translation Object
     const content = {
-        EN: {
+        English: {
             step1Heading: "DESIGN VISION AND STRATEGIC APPROACH",
             step1P1: "At Cadance, our design process is a strategic journey that transforms ideas into visually compelling architectural experiences. Whether it’s an architectural structure or an urban intervention, we begin by conducting in-depth research and creating mood boards to analyze the project’s objectives, material textures, and functional requirements. Our goal is to reveal the project’s unique identity with creative sensitivity.",
             step1P2: "Every project begins with a deep understanding of its purpose, context, and client expectations. Whether it’s an architectural structure, an urban intervention, or a product design, we take the time to analyze the goals, aesthetic direction, and functional requirements. This stage involves research, mood boards, and conceptual sketches to align our vision with the project's objectives.",
@@ -37,7 +37,7 @@ const Process = () => {
             step2P1: "Once we have a clear concept, we bring the project into the digital realm using precise 3D modeling techniques. At this stage, we meticulously focus not only on form but also on material details and spatial relationships to ensure the project’s technical and aesthetic consistency. At the end of the process, we bring the project to life through high-quality renders and visual storytelling, presenting the most realistic representation of what has yet to be built. ",
             step2P2: "Once the model is complete, we bring the project to life with high-quality renders and visual storytelling."
         },
-        TR: {
+        Türkçe: {
             step1Heading: "TASARIM VİZYONU ve STRATEJİK YAKLAŞIM",
             step1P1: "Cadance olarak tasarım sürecimiz, fikirleri görsel açıdan etkileyici mimari deneyimlere dönüştüren stratejik bir yolculuktur. İster mimari bir yapı, ister kentsel bir müdahale olsun; hedefleri, malzeme dokularını ve işlevsel gereklilikleri analiz etmek için derinlemesine araştırma ve moodboard çalışmalarıyla işe başlıyoruz. Amacımız, projenin özgün kimliğini kreatif bir hassasiyetle ortaya çıkarmaktır.",
             step1P2: "Her proje; amacının, bağlamının ve müşteri beklentilerinin derinlemesine anlaşılmasıyla başlar. İster mimari bir yapı, ister kentsel bir müdahale veya ürün tasarımı olsun; hedefleri, estetik yönü ve işlevsel gereklilikleri analiz etmek için zaman ayırırız. Bu aşama, vizyonumuzu projenin hedefleriyle hizalamak için araştırma, mood board çalışmaları ve kavramsal eskizleri içerir.",
@@ -48,7 +48,7 @@ const Process = () => {
     }
 
     // Safety Check
-    const currentLang = content[selectedLanguage] ? selectedLanguage : "EN";
+    const currentLang = content[selectedLanguage] ? selectedLanguage : "English";
 
     // DETERMINE SLIDER ID - SET SLIDER VALUE
     const handleSliderValue = (e, sliderId) => {

@@ -10,11 +10,11 @@ const Landing = () => {
     const { selectedLanguage } = useContext(ProjectContext);
 
     const videoTexts = {
-        EN: ["ARCHITECTURE", "PRODUCT DESIGN", "3D VISUALIZATION", "RENOVATION"],
-        TR: ["MİMARLIK", "ÜRÜN TASARIMI", "3D GÖRSELLEŞTİRME", "TADİLAT"]
+        English: ["ARCHITECTURE", "PRODUCT DESIGN", "3D VISUALIZATION", "RENOVATION"],
+        Türkçe: ["MİMARLIK", "ÜRÜN TASARIMI", "3D GÖRSELLEŞTİRME", "TADİLAT"]
     };
 
-    const currentLang = videoTexts[selectedLanguage] ? selectedLanguage : "EN";
+    const currentLang = videoTexts[selectedLanguage] ? selectedLanguage : "English";
 
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
 

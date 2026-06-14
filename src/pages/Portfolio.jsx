@@ -96,7 +96,7 @@ const Portfolio = () => {
                 <meta name="twitter:title" content={seoData.ogTitle} />
                 <meta name="twitter:description" content={seoData.ogDescription} />
                 <link rel="canonical" href={seoData.canonical} />
-                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+                <html lang={selectedLanguage === "Türkçe" ? "tr" : "en"} />
             </Helmet>
 
             <Navbar />
@@ -125,7 +125,7 @@ const Portfolio = () => {
                             />
                             <div className={styles.projectDescriptionContainer}>
                                 <h3>{item.projectName}</h3>
-                                <p>{selectedLanguage == "EN" ? "see details" : "detayları görüntüle"}</p>
+                                <p>{selectedLanguage == "English" ? "see details" : "detayları görüntüle"}</p>
                             </div>
                         </Link>
                     ))

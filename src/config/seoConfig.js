@@ -1,7 +1,7 @@
 const seoConfig = {
   domain: "https://cadancestudio.com", 
   
-  TR: {
+  Türkçe: {
     HOME: {
       title: "Cadance Studio | Mimari Görselleştirme & Konsept Tasarım",
       description: "Cadance Studio; yenilikçi 3D mimari görselleştirme, minimalist iç mekan tasarımı ve sinematik sunum hizmetleri veren profesyonel tasarım stüdyosudur.",
@@ -64,7 +64,7 @@ const seoConfig = {
     }
   },
 
-  EN: {
+  English: {
     HOME: {
       title: "Cadance Studio | Architectural Visualization & Design",
       description: "Cadance Studio is a professional design studio offering innovative 3D architectural visualization, minimalist interior design, and cinematic presentations.",

@@ -53,7 +53,7 @@ const Home = () => {
                 <meta name="twitter:title" content={seoData.ogTitle} />
                 <meta name="twitter:description" content={seoData.ogDescription} />
                 <link rel="canonical" href={seoData.canonical} />
-                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+                <html lang={selectedLanguage === "Türkçe" ? "tr" : "en"} />
             </Helmet>
             <Navbar />
             <Landing />

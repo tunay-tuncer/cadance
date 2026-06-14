@@ -20,7 +20,7 @@ const FlowRightSide = () => {
     const { selectedLanguage } = useContext(ProjectContext);
 
     const content = {
-        EN: {
+        English: {
             "projectDashboardText": "Your Project Dashboard",
             "projectPhaseText": "Project Phase:",
             "nextStepText": "Next Milestone:",
@@ -44,7 +44,7 @@ const FlowRightSide = () => {
 
         },
 
-        TR: {
+        Türkçe: {
             "projectDashboardText": "Proje Kontrol Paneliniz",
             "projectPhaseText": "Proje Aşaması:",
             "nextStepText": "Sonraki Hedef:",

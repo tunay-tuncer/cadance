@@ -33,7 +33,7 @@ const Members = () => {
                 <meta name="twitter:title" content={seoData.ogTitle} />
                 <meta name="twitter:description" content={seoData.ogDescription} />
                 <link rel="canonical" href={seoData.canonical} />
-                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+                <html lang={selectedLanguage === "Türkçe" ? "tr" : "en"} />
             </Helmet>
             <Navbar />
             <ul className={styles.membersUl}>
@@ -42,7 +42,7 @@ const Members = () => {
                         <img src={member.memberImage} style={styles.memberPic} alt="cadance-member-img" />
                         <div className={styles.memberTextDiv}>
                             <h2 className={styles.memberName}>{member.memberName}</h2>
-                            <p className={styles.memberName}>{selectedLanguage == "EN" ? member.memberTitleEn : member.memberTitleTr}</p>
+                            <p className={styles.memberName}>{selectedLanguage == "English" ? member.memberTitleEn : member.memberTitleTr}</p>
                         </div>
                     </li>
                 ))}

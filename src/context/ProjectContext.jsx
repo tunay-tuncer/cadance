@@ -14,7 +14,7 @@ export const ProjectContextProvider = ({ children }) => {
     ]);
     const [selectedNavItem, setSelectedNavItem] = useState("");
 
-    const [selectedLanguage, setSelectedLanguage] = useState("TR");
+    const [selectedLanguage, setSelectedLanguage] = useState("Türkçe");
 
     const navbarItems = [
         { logo: logo, id: "video", path: "/" },

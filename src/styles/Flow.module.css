@@ -135,6 +135,7 @@
     flex-direction: column;
     gap: 3rem;
     padding: 3rem 0 3rem 3rem;
+    overflow: hidden;
     z-index: 2;
 }
 

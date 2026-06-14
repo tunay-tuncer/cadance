@@ -16,12 +16,12 @@ const VerticalSlider = () => {
   );
 
   const content = {
-    EN: {
+    English: {
       clientLabel: "CLIENT",
       locationLabel: "LOCATION",
       yearLabel: "YEAR"
     },
-    TR: {
+    Türkçe: {
       clientLabel: "MÜŞTERİ",
       locationLabel: "KONUM",
       yearLabel: "YIL"
@@ -29,7 +29,7 @@ const VerticalSlider = () => {
   };
 
   // Safety check: Default to EN if language is undefined
-  const currentLang = content[selectedLanguage] ? selectedLanguage : "EN";
+  const currentLang = content[selectedLanguage] ? selectedLanguage : "English";
 
   const getProject = async () => {
     const { data, error } = await supabaseClient

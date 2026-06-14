@@ -17,13 +17,13 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 const Project = () => {
     const { selectedLanguage, selectedProject } = useContext(ProjectContext);
     const seoData = seoConfig[selectedLanguage].PROJECT;
-    
+
     // Generate dynamic title and description from selected project if available
-    const projectTitle = selectedProject?.projectName 
-        ? `${selectedProject.projectName} | Cadance` 
+    const projectTitle = selectedProject?.projectName
+        ? `${selectedProject.projectName} | Cadance`
         : seoData.title;
     const projectDescription = selectedProject?.description || seoData.description;
-    
+
     const [viewportWidth, setViewportWidth] = useState(
         typeof window !== "undefined" ? window.innerWidth : 1024
     );
@@ -50,7 +50,7 @@ const Project = () => {
                 <meta name="twitter:title" content={projectTitle} />
                 <meta name="twitter:description" content={projectDescription} />
                 <link rel="canonical" href={seoData.canonical} />
-                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+                <html lang={selectedLanguage === "Türkçe" ? "tr" : "en"} />
             </Helmet>
             <Navbar />
 

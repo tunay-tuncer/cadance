@@ -26,7 +26,7 @@ const Footer = () => {
 
             <ul className={styles.footerNavItemsContainer}>
                 {navbarItems.map((item) => (!item.logo &&
-                    <Link to={item.path} key={item.id}> <li className={styles.navLi} onClick={() => handleSelectedNavItem(item.id)}>{selectedLanguage == "EN" ? item.nameEn : item.nameTr}</li></Link>
+                    <Link to={item.path} key={item.id}> <li className={styles.navLi} onClick={() => handleSelectedNavItem(item.id)}>{selectedLanguage == "English" ? item.nameEn : item.nameTr}</li></Link>
                 ))}
             </ul>
 

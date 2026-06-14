@@ -9,7 +9,7 @@ const About = () => {
     const { selectedLanguage } = useContext(ProjectContext);
 
     const content = {
-        EN: {
+        English: {
             heading: "CADANCE STUDIO",
             description: (
                 <>
@@ -20,7 +20,7 @@ const About = () => {
             ),
             buttonText: "EXPLORE OUR PORTFOLIO"
         },
-        TR: {
+        Türkçe: {
             heading: "CADANCE STÜDYO",
             description: (
                 <>
@@ -33,7 +33,7 @@ const About = () => {
         }
     };
 
-    const currentLang = content[selectedLanguage] ? selectedLanguage : "EN";
+    const currentLang = content[selectedLanguage] ? selectedLanguage : "English";
 
     return (
         <section id='about' className={styles.aboutMainContainer}>

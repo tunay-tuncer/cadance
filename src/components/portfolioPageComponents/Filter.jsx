@@ -23,7 +23,7 @@ const Filter = ({ searchText, setSearchText }) => {
                     className={`${styles.filterButton} ${isArchitecture === item.isArchitecture ? styles.selectedButton : ""}`}
                     onClick={() => handleSelectedProjectType(item.isArchitecture)}
                 >
-                    {selectedLanguage == "EN" ? item.nameEn : item.nameTr}
+                    {selectedLanguage == "English" ? item.nameEn : item.nameTr}
                 </button>
             ))}
             <div className={styles.inputContainer}>
@@ -32,7 +32,7 @@ const Filter = ({ searchText, setSearchText }) => {
                     className={styles.filterInput}
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    placeholder={selectedLanguage == "EN" ? "Search by tags (e.g. istanbul 2025)" : "Etiketlere göre ara (ör. istanbul 2025)"}
+                    placeholder={selectedLanguage == "English" ? "Search by tags (e.g. istanbul 2025)" : "Etiketlere göre ara (ör. istanbul 2025)"}
                 />
                 {searchText.length > 0 && (
                     <p className={styles.deleteButton} onClick={() => setSearchText("")}>x</p>

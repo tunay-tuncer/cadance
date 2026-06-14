@@ -22,12 +22,12 @@ const ContactUs = () => {
 
     // Dinamik Mail Konuları (Kullanıcı tıkladığında doğrudan istemciyi doldurur)
     const mailSubjects = {
-        EN: {
+        English: {
             viz: "mailto:info@cadancestudio.com?subject=[Cadance Studio] New Project Inquiry - Visualization",
             renovation: "mailto:info@cadancestudio.com?subject=[Cadance Studio] New Project Inquiry - Renovation",
             drawing: "mailto:info@cadancestudio.com?subject=[Cadance Studio] New Project Inquiry - Drawing/Project"
         },
-        TR: {
+        Türkçe: {
             viz: "mailto:info@cadancestudio.com?subject=[Cadance Studio] Yeni Proje Talebi - Görselleştirme",
             renovation: "mailto:info@cadancestudio.com?subject=[Cadance Studio] Yeni Proje Talebi - Tadilat / Yenileme",
             drawing: "mailto:info@cadancestudio.com?subject=[Cadance Studio] Yeni Proje Talebi - Proje / Çizim"
@@ -56,7 +56,7 @@ const ContactUs = () => {
                 <meta name="twitter:title" content={seoData.ogTitle} />
                 <meta name="twitter:description" content={seoData.ogDescription} />
                 <link rel="canonical" href={seoData.canonical} />
-                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+                <html lang={selectedLanguage === "Türkçe" ? "tr" : "en"} />
             </Helmet>
             <Navbar />
 
@@ -69,9 +69,9 @@ const ContactUs = () => {
                 {/* Sağ Taraf: Moody & Dark Luxury İçerik Alanı */}
                 <div className={styles.contactUsTextDiv}>
                     <div className={styles.headerSection}>
-                        <h1>{selectedLanguage === "EN" ? "START A PROJECT" : "PROJE BAŞLATIN"}</h1>
+                        <h1>{selectedLanguage === "English" ? "START A PROJECT" : "PROJE BAŞLATIN"}</h1>
                         <p className={styles.subtext}>
-                            {selectedLanguage === "EN"
+                            {selectedLanguage === "English"
                                 ? "Select your project type to send a direct inquiry or reach out via our channels."
                                 : "Doğrudan talep göndermek için proje türünüzü seçin veya kanallarımızdan bize ulaşın."}
                         </p>
@@ -100,7 +100,7 @@ const ContactUs = () => {
                             <span className={styles.emailText}>info@cadancestudio.com</span>
                             {isVisible && (
                                 <span className={styles.toastCopy}>
-                                    {selectedLanguage === "EN" ? "Copied!" : "Kopyalandı!"}
+                                    {selectedLanguage === "English" ? "Copied!" : "Kopyalandı!"}
                                 </span>
                             )}
                         </div>
@@ -120,22 +120,22 @@ const ContactUs = () => {
                     <div className={styles.flowShowcaseCard}>
                         <h3>CADANCE FLOW</h3>
                         <p>
-                            {selectedLanguage === "EN"
+                            {selectedLanguage === "English"
                                 ? "Track your project's phase, revisions, and real-time approvals via your exclusive client dashboard."
                                 : "Projenizin aşamalarını, revizyonlarını ve anlık onay süreçlerini size özel müşteri panelinizden takip edin."}
                         </p>
                         <a href="https://flow.cadancestudio.com" target="_blank" rel="noopener noreferrer" className={styles.flowButton}>
-                            {selectedLanguage === "EN" ? "Go to Client Dashboard" : "Müşteri Paneline Git"}
+                            {selectedLanguage === "English" ? "Go to Client Dashboard" : "Müşteri Paneline Git"}
                             <FaArrowRight />
                         </a>
                     </div>
 
                     {/* Sosyal Medya Linkleri */}
                     <div className={styles.socialsContainer}>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <a href="https://instagram.com/cadancestudio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             <FaInstagram />
                         </a>
-                        <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                        <a href="https://pinterest.com/cadancestudio" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
                             <FaPinterest />
                         </a>
                     </div>

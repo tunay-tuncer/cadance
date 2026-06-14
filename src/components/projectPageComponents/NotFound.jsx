@@ -14,13 +14,13 @@ const NotFound = () => {
     const seoData = seoConfig[selectedLanguage].NOTFOUND;
 
     const content = {
-        EN: {
+        English: {
             heading: "Looks like you are lost... ",
             body: "You’ve ventured so far off the map that even the GPS is confused. There is nothing to see here but empty pixels",
             button: "TAKE ME HOME"
         },
 
-        TR: {
+        Türkçe: {
             heading: "Kaybolmuş gibisin...",
             body: "Haritanın çok uzağına gitmişsin, GPS'in bile kafası karışmış durumda. Burada görülecek hiçbir şey yok, sadece boş pikseller var",
             button: "BENİ EVE GÖTÜR"
@@ -43,7 +43,7 @@ const NotFound = () => {
                 <meta name="twitter:title" content={seoData.ogTitle} />
                 <meta name="twitter:description" content={seoData.ogDescription} />
                 <link rel="canonical" href={seoData.canonical} />
-                <html lang={selectedLanguage === "TR" ? "tr" : "en"} />
+                <html lang={selectedLanguage === "Türkçe" ? "tr" : "en"} />
             </Helmet>
             <Navbar />
 

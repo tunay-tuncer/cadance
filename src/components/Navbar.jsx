@@ -5,6 +5,7 @@ import { ProjectContext } from '../context/ProjectContext';
 import styles from "../styles/Navbar.module.css"
 
 import { IoChevronDown, IoReader } from "react-icons/io5";
+import { RiMenuFill } from "react-icons/ri";
 
 const Navbar = () => {
     const { navbarItems, selectedNavItem, setSelectedNavItem, selectedLanguage, setSelectedLanguage } = useContext(ProjectContext)
@@ -17,7 +18,7 @@ const Navbar = () => {
 
     const handleLanguageChange = (e) => {
         e.preventDefault();
-        setSelectedLanguage(prev => prev === "TR" ? "EN" : "TR");
+        setSelectedLanguage(prev => prev === "Türkçe" ? "English" : "Türkçe");
     }
 
     useState(() => {
@@ -35,13 +36,14 @@ const Navbar = () => {
                 <Link to={"/"} onClick={() => handleSelectedNavItem("video")}><img className='logo' src={navbarItems[0].logo} alt="cadance-logo" /></Link>
                 <ul className={styles.linkContainer} style={{ transform: `${isDroppedDown ? "translateY(4rem)" : ""}` }}>
                     {navbarItems.map((item) => (!item.logo &&
-                        <Link to={item.path} key={item.id}> <li className={styles.navLi} onClick={() => handleSelectedNavItem(item.id)}>{selectedLanguage == "EN" ? item.nameEn : item.nameTr}</li></Link>
+                        <Link to={item.path} key={item.id}> <li className={styles.navLi} onClick={() => handleSelectedNavItem(item.id)}>{selectedLanguage == "English" ? item.nameEn : item.nameTr}</li></Link>
                     ))}
                 </ul>
+                <IoChevronDown onClick={() => setIsDroppedDown((prev) => !prev)} style={{ transform: isDroppedDown ? "rotateX(180deg)" : "" }} />
             </div>
 
             <div className={styles.rightContainer}>
-                <IoChevronDown onClick={() => setIsDroppedDown((prev) => !prev)} style={{ transform: isDroppedDown ? "rotateX(180deg)" : "" }} />
+
                 <div className={styles.languageDiv}>
                     <p onClick={(e) => handleLanguageChange(e)}>{selectedLanguage}</p>
                 </div>
