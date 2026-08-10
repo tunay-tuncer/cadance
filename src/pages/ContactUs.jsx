@@ -20,7 +20,7 @@ const ContactUs = () => {
     const seoData = seoConfig[selectedLanguage].CONTACT;
     const [isVisible, setIsVisible] = useState(false);
 
-    // Dinamik Mail Konuları (Kullanıcı tıkladığında doğrudan istemciyi doldurur)
+
     const mailSubjects = {
         English: {
             viz: "mailto:info@cadancestudio.com?subject=[Cadance Studio] New Project Inquiry - Visualization",
@@ -80,15 +80,15 @@ const ContactUs = () => {
                     {/* Hızlı E-posta Tetikleyicileri (Kategori Bazlı) */}
                     <div className={styles.projectTypeContainer}>
                         <a href={mailSubjects[selectedLanguage].viz} className={styles.projectTypeCard}>
-                            <span>Viz</span>
+                            <span>{selectedLanguage == "Türkçe" ? "Görselleştirme" : "Viz"}</span>
                             <FaArrowRight className={styles.arrowIcon} />
                         </a>
                         <a href={mailSubjects[selectedLanguage].renovation} className={styles.projectTypeCard}>
-                            <span>Renovation</span>
+                            <span>{selectedLanguage == "Türkçe" ? "Tadilat" : "Renovation"}</span>
                             <FaArrowRight className={styles.arrowIcon} />
                         </a>
                         <a href={mailSubjects[selectedLanguage].drawing} className={styles.projectTypeCard}>
-                            <span>Drawing</span>
+                            <span>{selectedLanguage == "Türkçe" ? "Çizim" : "Drawing"}</span>
                             <FaArrowRight className={styles.arrowIcon} />
                         </a>
                     </div>

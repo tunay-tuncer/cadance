@@ -23,6 +23,7 @@ const FlowRightSide = () => {
         English: {
             "projectDashboardText": "Your Project Dashboard",
             "projectPhaseText": "Project Phase:",
+            "completeText": "Complete",
             "nextStepText": "Next Milestone:",
             "approvalText": "Approval Required:",
             "clientInputText": "Client Data",
@@ -47,6 +48,7 @@ const FlowRightSide = () => {
         Türkçe: {
             "projectDashboardText": "Proje Kontrol Paneliniz",
             "projectPhaseText": "Proje Aşaması:",
+            "completeText": "Tamamlandı",
             "nextStepText": "Sonraki Hedef:",
             "approvalText": "Onay Gereken:",
             "clientInputText": "Müşteri Doneleri",
@@ -186,7 +188,7 @@ const FlowRightSide = () => {
                             {`${percentage}%`}
                         </p>
                         <span style={{ color: percentage === 100 ? 'var(--accent)' : 'inherit', transition: 'color 0.3s' }}>
-                            {percentage === 100 ? "Complete!" : "Complete"}
+                            {percentage === 100 ? `${content[currentLang].completeText}!` : content[currentLang].completeText}
                         </span>
                     </div>
                 </div>

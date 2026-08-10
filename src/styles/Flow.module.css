@@ -1,7 +1,6 @@
 @property --degree {
     syntax: "<angle>";
     initial-value: 0deg;
-    /* match JS initial degree (0%) */
     inherits: false;
 }
 
@@ -19,6 +18,16 @@
     overflow: hidden;
 }
 
+/* --- SOL TARAFF (LEFT CONTAINER) --- */
+.leftContainer {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 4rem;
+    z-index: 2;
+}
+
 .headingContainer h3 {
     color: var(--accent);
     font-size: 1.25rem;
@@ -27,6 +36,7 @@
 .headingContainer h1 {
     font-weight: 700;
     font-size: 3rem;
+    line-height: 1.1;
 }
 
 .headingContainer span {
@@ -35,25 +45,24 @@
     color: var(--textGrey);
 }
 
-.leftContainer {
+.flowStepsContainer {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 0 4rem;
-    z-index: 2;
+    gap: 1rem;
 }
 
 .stepItem {
     display: flex;
     align-items: center;
     gap: 1rem;
-    height: 2rem;
+    min-height: 2rem;
     font-size: 1.1rem;
 }
 
 .stepItem svg {
     color: var(--accent);
     font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
 .linkButton {
@@ -64,7 +73,7 @@
     color: var(--accent);
     font-weight: 600;
     border-radius: 2rem;
-    width: 50%;
+    width: 55%;
     display: flex;
     align-items: center;
     transition: 0.4s ease;
@@ -72,18 +81,19 @@
     overflow: hidden;
     border: none;
     outline: none;
+    text-decoration: none;
 }
 
 .linkButton:hover {
     scale: 0.98;
 }
 
-.linkButton:hover p {
+.linkButton:hover p,
+.linkButton:hover svg {
     color: var(--textWhite);
 }
 
 .linkButton:hover svg {
-    color: var(--textWhite);
     animation: buttonHover 0.5s alternate infinite;
 }
 
@@ -121,10 +131,9 @@
     }
 }
 
-/* RIGHT CONTAINER */
-
+/* --- SAĞ TARAF (RIGHT CONTAINER) --- */
 .rightContainer {
-    width: 40%;
+    width: 46%;
     height: 30rem;
     background: var(--bgDark);
     border: 6px solid white;
@@ -296,85 +305,204 @@
     font-size: 1.25rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1440px) {
+    .flowMainSection {
+        margin-top: 6rem;
+        padding: 3rem 0;
+    }
+
+    .leftContainer {
+        width: 48%;
+        padding: 0 3rem;
+        gap: 1.5rem;
+    }
+
+    .headingContainer h1 {
+        font-size: 2.5rem;
+    }
+
+    .stepItem {
+        font-size: 1rem;
+    }
+
+    .linkButton {
+        width: 65%;
+        padding: 0.85rem 1.5rem;
+    }
+
+    .rightContainer {
+        width: 48%;
+        height: 27rem;
+        padding: 2rem 0 2rem 2rem;
+        gap: 2rem;
+    }
+
+    .rightContainer h1 {
+        font-size: 1.5rem;
+    }
+
+    .contentContainer {
+        gap: 1.5rem;
+    }
+
+    .progressTextContainer p {
+        font-size: 2.8rem;
+    }
+
+    .percentageText.incrementing {
+        font-size: 2.2rem;
+    }
+
+    .progressTextContainer span {
+        font-size: 1.25rem;
+    }
+
+    .stepsContainer {
+        width: 62%;
+        gap: 0.75rem;
+    }
+
+    .phaseContainer {
+        gap: 1rem;
+        padding-inline: 0.75rem 1.25rem;
+    }
+
+    .svgContainer {
+        font-size: 1.1rem;
+    }
+
+    .phaseTextContainer p {
+        font-size: 0.875rem;
+    }
+
+    .phaseTextContainer h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 1100px) {
     .flowMainSection {
         flex-direction: column;
-        justify-content: unset;
-        gap: 4rem;
+        justify-content: flex-start;
         height: auto;
-        padding: 4rem 1.5rem;
-        overflow: hidden;
+        padding: 3rem 2rem;
+        gap: 4rem;
     }
 
     .leftContainer {
         width: 100%;
-        height: auto;
+        padding: 0;
     }
 
-    .leftContainer h1,
-    .leftContainer span {
-        font-size: 2rem;
-    }
-
-    .leftContainerButton {
-        height: 4rem;
-    }
-
-    .flowStepsContainer {
-        height: fit-content;
-    }
-
-    .stepItem {
-        min-height: 3rem;
-        font-size: 1rem;
-    }
-
-    .stepItem svg {
-        min-width: 1.5rem;
+    .headingContainer h1 {
+        font-size: 2.75rem;
     }
 
     .linkButton {
         width: 100%;
+        padding: 1rem 2rem;
     }
 
     .rightContainer {
-        width: calc(100% - 6rem);
+        width: 100%;
         height: auto;
         border: 4px solid white;
-        border-radius: 1rem;
-        text-align: center;
-        padding: 2rem;
+        border-radius: 2rem;
+        padding: 2.5rem;
         gap: 2rem;
+    }
+
+    .contentContainer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .progressBar {
+        height: 14rem;
+        width: 14rem;
+        flex-shrink: 0;
+    }
+
+    .progressTextContainer p {
+        font-size: 2.8rem;
+    }
+
+    .stepsContainer {
+        width: 60%;
+        gap: 1.25rem;
+    }
+
+    .phaseContainer {
+        border-radius: 1.5rem;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .phaseContainer:first-child {
+        border-right: 3px solid white;
+    }
+}
+
+@media (max-width: 768px) {
+    .flowMainSection {
+        margin-top: 4rem;
+        padding: 3rem;
+        gap: 3rem;
+    }
+
+    .headingContainer h3 {
+        font-size: 1rem;
+    }
+
+    .headingContainer h1 {
+        font-size: 2rem;
+    }
+
+    .flowStepsContainer {
+        gap: 0;
+    }
+
+    .stepItem {
+        font-size: 0.95rem;
+        min-height: 2.5rem;
+    }
+
+    .stepItem svg {
+        font-size: 1.35rem;
+    }
+
+    .rightContainer {
+        width: 100%;
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        text-align: start;
     }
 
     .contentContainer {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     .progressBar {
-        min-height: 200px;
+        height: 13rem;
+        width: 13rem;
     }
 
     .outerDiv {
-        width: 16rem !important;
-        height: 16rem !important;
+        width: 100% !important;
+        height: 100% !important;
     }
 
     .innerDiv {
-        transform: translate(1.25rem, 1.25rem);
-        height: calc(16rem - 2.5rem) !important;
-        width: calc(16rem - 2.5rem) !important;
-    }
-
-    .progressTextContainer {
-        width: 16rem;
-        height: 16rem;
+        transform: translate(1rem, 1rem);
+        height: calc(100% - 2rem) !important;
+        width: calc(100% - 2rem) !important;
     }
 
     .progressTextContainer p {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .stepsContainer {
@@ -384,7 +512,6 @@
     .phaseContainer {
         padding: 0.75rem;
         border-radius: 1rem;
-        text-align: start;
     }
 
     .phaseContainer:first-child {
@@ -392,20 +519,24 @@
     }
 
     .svgContainer {
-        height: 100%;
+        height: 2.5rem;
     }
 }
 
 @media (max-width: 450px) {
-    .linkButton {
-        width: 100% !important;
+    .flowMainSection {
+        padding: 1.5rem 1rem;
+    }
+
+    .leftContainer {
+        gap: 1.25rem;
+    }
+
+    .headingContainer h1 {
+        font-size: 1.75rem;
     }
 
     .rightContainer {
-        height: 100%;
-    }
-
-    .svgContainer {
-        height: 3rem;
+        padding: 1.25rem 1rem;
     }
 }
