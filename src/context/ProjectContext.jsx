@@ -19,6 +19,7 @@ export const ProjectContextProvider = ({ children }) => {
     const navbarItems = [
         { logo: logo, id: "video", path: "/" },
         { nameTr: "HAKKINDA", nameEn: "ABOUT", id: "about", path: "/" },
+        { nameTr: "REFERANSLAR", nameEn: "REFERENCES", id: "references", path: "/" },
         { nameTr: "SÜREÇ", nameEn: "PROCESS", id: "process", path: "/" },
         { nameTr: "ÜYELER", nameEn: "MEMBERS", id: "members", path: "/members" },
         { nameTr: "İLETİŞİM", nameEn: "CONTACT US", id: "contact", path: "/contact" },

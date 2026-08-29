@@ -1,6 +1,6 @@
 // DEPENDENCIES
-import { useContext, useState } from "react" // 1. Added useContext
-import { ProjectContext } from "../../context/ProjectContext" // 2. Added Context import
+import { useContext, useState } from "react"
+import { ProjectContext } from "../../context/ProjectContext"
 
 // PAGE COMPONENTS
 import styles from "../../styles/Process.module.css"
@@ -30,18 +30,22 @@ const Process = () => {
     // 4. Translation Object
     const content = {
         English: {
-            step1Heading: "DESIGN VISION AND STRATEGIC APPROACH",
+            step1SubHeading: "DESIGN VISION",
+            step1Heading: "STRATEGIC APPROACH",
             step1P1: "At Cadance, our design process is a strategic journey that transforms ideas into visually compelling architectural experiences. Whether it’s an architectural structure or an urban intervention, we begin by conducting in-depth research and creating mood boards to analyze the project’s objectives, material textures, and functional requirements. Our goal is to reveal the project’s unique identity with creative sensitivity.",
             step1P2: "Every project begins with a deep understanding of its purpose, context, and client expectations. Whether it’s an architectural structure, an urban intervention, or a product design, we take the time to analyze the goals, aesthetic direction, and functional requirements. This stage involves research, mood boards, and conceptual sketches to align our vision with the project's objectives.",
-            step2Heading: "ADVANCED MODELING AND VISUALIZATION",
+            step2SubHeading: "ADVANCED MODELING",
+            step2Heading: "VISUALIZATION",
             step2P1: "Once we have a clear concept, we bring the project into the digital realm using precise 3D modeling techniques. At this stage, we meticulously focus not only on form but also on material details and spatial relationships to ensure the project’s technical and aesthetic consistency. At the end of the process, we bring the project to life through high-quality renders and visual storytelling, presenting the most realistic representation of what has yet to be built. ",
             step2P2: "Once the model is complete, we bring the project to life with high-quality renders and visual storytelling."
         },
         Türkçe: {
-            step1Heading: "TASARIM VİZYONU ve STRATEJİK YAKLAŞIM",
+            step1SubHeading: "TASARIM VİZYONU",
+            step1Heading: "STRATEJİK YAKLAŞIM",
             step1P1: "Cadance olarak tasarım sürecimiz, fikirleri görsel açıdan etkileyici mimari deneyimlere dönüştüren stratejik bir yolculuktur. İster mimari bir yapı, ister kentsel bir müdahale olsun; hedefleri, malzeme dokularını ve işlevsel gereklilikleri analiz etmek için derinlemesine araştırma ve moodboard çalışmalarıyla işe başlıyoruz. Amacımız, projenin özgün kimliğini kreatif bir hassasiyetle ortaya çıkarmaktır.",
             step1P2: "Her proje; amacının, bağlamının ve müşteri beklentilerinin derinlemesine anlaşılmasıyla başlar. İster mimari bir yapı, ister kentsel bir müdahale veya ürün tasarımı olsun; hedefleri, estetik yönü ve işlevsel gereklilikleri analiz etmek için zaman ayırırız. Bu aşama, vizyonumuzu projenin hedefleriyle hizalamak için araştırma, mood board çalışmaları ve kavramsal eskizleri içerir.",
-            step2Heading: "İLERİ SEVİYE MODELLEME ve GÖRSELLEŞTİRME",
+            step2SubHeading: "İLERİ SEVİYE MODELLEME",
+            step2Heading: "GÖRSELLEŞTİRME",
             step2P1: "Net bir konseptin ardından, hassas 3D modelleme teknikleriyle projeyi dijital dünyaya taşıyoruz. Bu aşamada sadece form değil, malzeme detayları ve mekansal ilişkiler üzerinde titizlikle durarak projenin teknik ve estetik tutarlılığını sağlıyoruz. Sürecin sonunda, yüksek kaliteli renderlar ve görsel hikaye anlatımıyla projeyi hayata geçiriyor, henüz inşa edilmemiş olanın en gerçekçi halini sunuyoruz.",
             step2P2: "Model tamamlandığında, projeyi yüksek kaliteli renderlar ve görsel hikaye anlatımıyla hayata geçiriyoruz."
         }
@@ -62,7 +66,11 @@ const Process = () => {
     return (
         <section className={styles.processMainContainer}>
             <article id='process' className={styles.firstStepContainer}>
-                <h2 className="homepageHeading">{content[currentLang].step1Heading}</h2>
+
+                <div className={styles.headingContainer}>
+                    <span className={styles.subHeading}>{content[currentLang].step1SubHeading}</span>
+                    <h2 className={styles.heading}>{content[currentLang].step1Heading}</h2>
+                </div>
 
                 <div className={styles.textContainer}>
                     <p>{content[currentLang].step1P1}</p>
@@ -72,7 +80,10 @@ const Process = () => {
             </article>
 
             <article className={styles.thirdStepContainer}>
-                <h2 className="homepageHeading">{content[currentLang].step2Heading}</h2>
+                <div className={styles.headingContainer}>
+                    <span className={styles.subHeading}>{content[currentLang].step2SubHeading}</span>
+                    <h2 className={styles.heading}>{content[currentLang].step2Heading}</h2>
+                </div>
 
                 <div className={styles.textContainer}>
                     <p>{content[currentLang].step2P1}</p>

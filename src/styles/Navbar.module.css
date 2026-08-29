@@ -134,14 +134,14 @@ a {
 
 @media (max-width:768px) {
     .linkContainer {
-        margin-top: 8rem;
+        margin-top: 12rem;
         position: absolute;
         flex-direction: column;
         transform: translateY(-100%);
         width: 100%;
         left: 0;
         z-index: -9;
-        height: 14rem;
+        height: 18rem;
         justify-content: space-between;
         padding-bottom: 2rem;
         align-items: center;

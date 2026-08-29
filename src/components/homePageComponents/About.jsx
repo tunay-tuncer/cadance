@@ -10,6 +10,7 @@ const About = () => {
 
     const content = {
         English: {
+            subHeading: "Welcome to",
             heading: "CADANCE STUDIO",
             description: (
                 <>
@@ -21,6 +22,7 @@ const About = () => {
             buttonText: "EXPLORE OUR PORTFOLIO"
         },
         Türkçe: {
+            subHeading: "Hoşgeldiniz",
             heading: "CADANCE STÜDYO",
             description: (
                 <>
@@ -39,8 +41,13 @@ const About = () => {
         <section id='about' className={styles.aboutMainContainer}>
 
             <img className={styles.aboutImage} src={image} alt="Cadance Studio mimari görselleştirme ve parametrik tasarım" />
+
             <div className={styles.textDiv}>
-                <h1 className="homepageHeading">{content[currentLang].heading}</h1>
+                <div className={styles.headingContainer}>
+                    <span className={styles.subHeading}>{content[currentLang].subHeading}</span>
+                    <h2 className={styles.heading}>{content[currentLang].heading}</h2>
+                </div>
+
                 <p>
                     {content[currentLang].description}
                 </p>

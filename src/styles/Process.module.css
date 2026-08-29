@@ -8,6 +8,29 @@
     margin-bottom: 8rem;
 }
 
+.headingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subHeading {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--textGrey);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.heading {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300 !important;
+    color: var(--textBlack);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
 .visionImage {
     cursor: pointer;
     transition: 0.4s ease;
@@ -27,11 +50,6 @@
     gap: 2rem;
 }
 
-.processMainContainer h2 {
-    font-size: 1.75rem;
-    text-align: center;
-    font-weight: 600;
-}
 
 .textContainer {
     display: flex;
@@ -183,14 +201,14 @@ strong {
     .horizontalLine {
         width: 3px;
     }
+
+    .visionImage {
+        width: 100% !important;
+    }
 }
 
 @media (max-width:375px) {
     .processMainContainer {
         padding-inline: 4rem;
-    }
-
-    .visionImage {
-        width: 100% !important;
     }
 }

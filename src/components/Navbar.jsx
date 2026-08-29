@@ -5,7 +5,6 @@ import { ProjectContext } from '../context/ProjectContext';
 import styles from "../styles/Navbar.module.css"
 
 import { IoChevronDown, IoReader } from "react-icons/io5";
-import { RiMenuFill } from "react-icons/ri";
 
 const Navbar = () => {
     const { navbarItems, selectedNavItem, setSelectedNavItem, selectedLanguage, setSelectedLanguage } = useContext(ProjectContext)

@@ -8,6 +8,7 @@ import seoConfig from '../config/seoConfig';
 import Navbar from "../components/Navbar";
 import Landing from "../components/homePageComponents/Landing"
 import About from '../components/homePageComponents/About';
+import References from '../components/homePageComponents/References';
 import Flow from '../components/homePageComponents/Flow';
 import Process from '../components/homePageComponents/Process';
 import ScrollToTopButton from "../components/ScrollToTopButton";
@@ -58,6 +59,7 @@ const Home = () => {
             <Navbar />
             <Landing />
             <About />
+            <References />
             <Flow />
             <Process />
             <ScrollToTopButton />
