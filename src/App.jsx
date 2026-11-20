@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router'
 import { ProjectContextProvider } from './context/ProjectContext'
 
@@ -10,6 +11,8 @@ import NotFound from './components/projectPageComponents/NotFound.jsx'
 
 import { Analytics } from '@vercel/analytics/react';
 
+const Admin = lazy(() => import('./pages/Admin.jsx'));
+
 function App() {
 
   return (
@@ -21,6 +24,14 @@ function App() {
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/portfolio' element={<Portfolio />} />
           <Route path='/project/:id' element={<Project />} />
+          <Route
+            path='/admin'
+            element={
+              <Suspense fallback={null}>
+                <Admin />
+              </Suspense>
+            }
+          />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Analytics />
