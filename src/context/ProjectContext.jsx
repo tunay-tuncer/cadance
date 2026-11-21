@@ -5,7 +5,7 @@ import logo from "../assets/LogoBluePNG.png";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { TiSocialPinterest } from "react-icons/ti";
 import { FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 
 export const ProjectContext = createContext({})
 
@@ -30,6 +30,7 @@ export const ProjectContextProvider = ({ children }) => {
     const socialMedia = [
         { icon: <FaInstagram />, url: "https://www.instagram.com/cadancestudio/" },
         { icon: <TiSocialPinterest />, url: "https://tr.pinterest.com/cadancestudio/" },
+        { icon: <FaWhatsapp />, url: "https://wa.me/905330927735" },
         { icon: <TiSocialLinkedin />, url: "https://www.linkedin.com" }
     ]
 

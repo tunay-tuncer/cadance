@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import { createClient } from "@supabase/supabase-js";
 import supabaseClient from "../config/supabaseClient";
 import styles from "../styles/Admin.module.css";
 import logo from "../assets/LogoBluePNG.png";
@@ -10,6 +12,7 @@ import {
     FaArrowUp,
     FaCloudArrowUp,
     FaGoogle,
+    FaGripVertical,
     FaPen,
     FaPlus,
     FaRightFromBracket,
@@ -17,6 +20,16 @@ import {
     FaTrash,
     FaXmark,
 } from "react-icons/fa6";
+
+const AUTH0_DOMAIN = import.meta.env.VITE_AUTH0_DOMAIN || "";
+const AUTH0_CLIENT_ID = import.meta.env.VITE_AUTH0_CLIENT_ID || "";
+const AUTH0_AUDIENCE = import.meta.env.VITE_AUTH0_AUDIENCE || "";
+const USE_AUTH0_SUPABASE_JWT =
+    Boolean(AUTH0_AUDIENCE) ||
+    import.meta.env.VITE_SUPABASE_USE_AUTH0_JWT === "true";
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const CLOUDINARY_CLOUD_NAME =
     import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "dabmjz0xr";
@@ -27,6 +40,7 @@ const ALLOWED_ADMIN_EMAILS = (import.meta.env.VITE_ADMIN_EMAILS || "")
     .split(",")
     .map((email) => email.trim().toLowerCase())
     .filter(Boolean);
+const REQUIRED_AUTH0_CONNECTION = "google-oauth2";
 
 const EMPTY_FORM = {
     projectName: "",
@@ -53,10 +67,17 @@ function parseDescription(description) {
     };
 }
 
-const Admin = () => {
-    const [session, setSession] = useState(null);
-    const [authLoading, setAuthLoading] = useState(true);
-    const [authError, setAuthError] = useState("");
+const AdminDashboard = () => {
+    const {
+        isLoading: authLoading,
+        isAuthenticated,
+        user,
+        error: authError,
+        loginWithRedirect,
+        logout,
+        getAccessTokenSilently,
+        getIdTokenClaims,
+    } = useAuth0();
 
     const [projects, setProjects] = useState([]);
     const [loadingProjects, setLoadingProjects] = useState(false);
@@ -70,6 +91,9 @@ const Admin = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     const [deletingId, setDeletingId] = useState(null);
+    const [draggedId, setDraggedId] = useState(null);
+    const [dragOverId, setDragOverId] = useState(null);
+    const [isReordering, setIsReordering] = useState(false);
 
     const [toast, setToast] = useState(null); // { type: 'success' | 'error', text: string }
     const dialogRef = useRef(null);
@@ -85,43 +109,41 @@ const Admin = () => {
         return () => clearTimeout(timer);
     }, [toast]);
 
-    // Sync Supabase Auth session
-    useEffect(() => {
-        let mounted = true;
-
-        supabaseClient.auth.getSession().then(({ data, error }) => {
-            if (!mounted) return;
-            if (error) {
-                setAuthError(error.message);
-            }
-            setSession(data?.session ?? null);
-            setAuthLoading(false);
+    // Use Auth0 JWT with Supabase when Third-Party Auth is enabled
+    const dbClient = useMemo(() => {
+        if (!isAuthenticated || !USE_AUTH0_SUPABASE_JWT) {
+            return supabaseClient;
+        }
+        return createClient(SUPABASE_URL, SUPABASE_KEY, {
+            accessToken: async () => {
+                if (AUTH0_AUDIENCE) {
+                    return await getAccessTokenSilently({
+                        authorizationParams: { audience: AUTH0_AUDIENCE },
+                    });
+                }
+                const claims = await getIdTokenClaims();
+                return claims?.__raw ?? null;
+            },
         });
+    }, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims]);
 
-        const {
-            data: { subscription },
-        } = supabaseClient.auth.onAuthStateChange((_event, nextSession) => {
-            if (!mounted) return;
-            setSession(nextSession);
-            setAuthLoading(false);
-        });
-
-        return () => {
-            mounted = false;
-            subscription.unsubscribe();
-        };
-    }, []);
-
-    const userEmail = session?.user?.email?.toLowerCase() || "";
+    const userEmail = user?.email?.toLowerCase() || "";
+    const isGoogleConnection =
+        typeof user?.sub === "string" &&
+        user.sub.startsWith(`${REQUIRED_AUTH0_CONNECTION}|`);
+    const isEmailVerified = user?.email_verified === true;
     const isAuthorized = useMemo(() => {
-        if (!session) return false;
-        if (ALLOWED_ADMIN_EMAILS.length === 0) return true;
-        return ALLOWED_ADMIN_EMAILS.includes(userEmail);
-    }, [session, userEmail]);
+        if (!isAuthenticated || ALLOWED_ADMIN_EMAILS.length === 0) return false;
+        return (
+            ALLOWED_ADMIN_EMAILS.includes(userEmail) &&
+            isGoogleConnection &&
+            isEmailVerified
+        );
+    }, [isAuthenticated, userEmail, isGoogleConnection, isEmailVerified]);
 
     const fetchProjects = useCallback(async () => {
         setLoadingProjects(true);
-        const { data, error } = await supabaseClient
+        const { data, error } = await dbClient
             .from("cadance_projects")
             .select("*")
             .order("display_order", { ascending: true, nullsFirst: false })
@@ -134,7 +156,7 @@ const Admin = () => {
             setProjects(data || []);
         }
         setLoadingProjects(false);
-    }, [showToast]);
+    }, [dbClient, showToast]);
 
     useEffect(() => {
         if (isAuthorized) {
@@ -154,25 +176,23 @@ const Admin = () => {
         }
     }, [isModalOpen]);
 
-    const handleGoogleSignIn = async () => {
-        setAuthError("");
-        const { error } = await supabaseClient.auth.signInWithOAuth({
-            provider: "google",
-            options: {
-                redirectTo: `${window.location.origin}/admin`,
-                queryParams: {
-                    prompt: "select_account",
-                },
+    const handleAuth0SignIn = () => {
+        loginWithRedirect({
+            authorizationParams: {
+                redirect_uri: `${window.location.origin}/admin`,
+                connection: REQUIRED_AUTH0_CONNECTION,
+                prompt: "select_account",
             },
         });
-        if (error) {
-            setAuthError(error.message);
-        }
     };
 
-    const handleSignOut = async () => {
-        await supabaseClient.auth.signOut();
+    const handleSignOut = () => {
         setProjects([]);
+        logout({
+            logoutParams: {
+                returnTo: `${window.location.origin}/admin`,
+            },
+        });
     };
 
     const openCreateModal = () => {
@@ -354,11 +374,11 @@ const Admin = () => {
         };
 
         const { error } = editingId
-            ? await supabaseClient
+            ? await dbClient
                   .from("cadance_projects")
                   .update(payload)
                   .eq("id", editingId)
-            : await supabaseClient.from("cadance_projects").insert([payload]);
+            : await dbClient.from("cadance_projects").insert([payload]);
 
         setIsSaving(false);
 
@@ -382,7 +402,7 @@ const Admin = () => {
         if (!confirmed) return;
 
         setDeletingId(project.id);
-        const { error } = await supabaseClient
+        const { error } = await dbClient
             .from("cadance_projects")
             .delete()
             .eq("id", project.id);
@@ -417,6 +437,96 @@ const Admin = () => {
         });
     }, [projects, categoryFilter, searchQuery]);
 
+    const isSearchActive = searchQuery.trim().length > 0;
+    const canDragReorder = !isSearchActive && !isReordering && filteredProjects.length > 1;
+
+    const handleDragStart = (e, projectId) => {
+        if (!canDragReorder) return;
+        setDraggedId(projectId);
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text/plain", String(projectId));
+    };
+
+    const handleDragOver = (e, targetId) => {
+        if (!canDragReorder || draggedId === null) return;
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+        if (dragOverId !== targetId) {
+            setDragOverId(targetId);
+        }
+    };
+
+    const handleDragEnd = () => {
+        setDraggedId(null);
+        setDragOverId(null);
+    };
+
+    const handleDrop = async (e, targetId) => {
+        e.preventDefault();
+        const sourceId = draggedId;
+        setDraggedId(null);
+        setDragOverId(null);
+
+        if (!canDragReorder || sourceId === null || sourceId === targetId) return;
+
+        const visibleList = [...filteredProjects];
+        const fromIdx = visibleList.findIndex((p) => p.id === sourceId);
+        const toIdx = visibleList.findIndex((p) => p.id === targetId);
+        if (fromIdx === -1 || toIdx === -1) return;
+
+        const [moved] = visibleList.splice(fromIdx, 1);
+        visibleList.splice(toIdx, 0, moved);
+
+        // Assign sequential display_order (1..N) across the reordered list
+        const updatedOrders = new Map();
+        const changedRows = [];
+        visibleList.forEach((item, index) => {
+            const nextOrder = index + 1;
+            updatedOrders.set(item.id, nextOrder);
+            if (item.display_order !== nextOrder) {
+                changedRows.push({ id: item.id, display_order: nextOrder });
+            }
+        });
+
+        if (changedRows.length === 0) return;
+
+        // Optimistically update local state sorted by display_order then id
+        setProjects((prev) =>
+            prev
+                .map((p) =>
+                    updatedOrders.has(p.id)
+                        ? { ...p, display_order: updatedOrders.get(p.id) }
+                        : p
+                )
+                .sort((a, b) => {
+                    const orderA = a.display_order ?? Number.MAX_SAFE_INTEGER;
+                    const orderB = b.display_order ?? Number.MAX_SAFE_INTEGER;
+                    if (orderA !== orderB) return orderA - orderB;
+                    return a.id - b.id;
+                })
+        );
+
+        setIsReordering(true);
+        const results = await Promise.all(
+            changedRows.map(({ id, display_order }) =>
+                dbClient
+                    .from("cadance_projects")
+                    .update({ display_order })
+                    .eq("id", id)
+            )
+        );
+        setIsReordering(false);
+
+        const failed = results.find((r) => r.error);
+        if (failed) {
+            showToast("error", `Failed to save order: ${failed.error.message}`);
+            fetchProjects();
+            return;
+        }
+
+        showToast("success", "Display order updated.");
+    };
+
     const helmetMeta = (
         <Helmet>
             <title>Admin | Cadance Studio</title>
@@ -436,7 +546,7 @@ const Admin = () => {
         );
     }
 
-    if (!session) {
+    if (!isAuthenticated) {
         return (
             <div className={styles.authShell}>
                 {helmetMeta}
@@ -444,17 +554,19 @@ const Admin = () => {
                     <img src={logo} alt="Cadance" className={styles.authLogo} />
                     <h1 className={styles.authTitle}>CADANCE ADMIN</h1>
                     <p className={styles.mutedText}>
-                        Sign in with an authorized Gmail account to manage portfolio
+                        Sign in with an authorized Google account to manage portfolio
                         projects.
                     </p>
-                    {authError && <p className={styles.errorBanner}>{authError}</p>}
+                    {authError && (
+                        <p className={styles.errorBanner}>{authError.message}</p>
+                    )}
                     <button
                         type="button"
                         className={styles.googleBtn}
-                        onClick={handleGoogleSignIn}
+                        onClick={handleAuth0SignIn}
                     >
                         <FaGoogle />
-                        <span>Continue with Gmail</span>
+                        <span>Continue with Google</span>
                     </button>
                     <Link to="/" className={styles.backLink}>
                         <FaArrowLeft /> Back to website
@@ -465,6 +577,12 @@ const Admin = () => {
     }
 
     if (!isAuthorized) {
+        const denyReason = !isGoogleConnection
+            ? "Only Google sign-in is permitted."
+            : !isEmailVerified
+            ? "Your Google email address must be verified."
+            : "This account is not authorized to access the admin panel.";
+
         return (
             <div className={styles.authShell}>
                 {helmetMeta}
@@ -472,8 +590,8 @@ const Admin = () => {
                     <img src={logo} alt="Cadance" className={styles.authLogo} />
                     <h1 className={styles.authTitle}>ACCESS DENIED</h1>
                     <p className={styles.mutedText}>
-                        <strong>{session.user.email}</strong> is not in the admin
-                        allowlist.
+                        <strong>{user?.email || "Your account"}</strong> cannot access
+                        the admin panel. {denyReason}
                     </p>
                     <button
                         type="button"
@@ -516,7 +634,7 @@ const Admin = () => {
                     <img src={logo} alt="Cadance" className={styles.topLogo} />
                     <div>
                         <h1 className={styles.pageTitle}>Portfolio Admin</h1>
-                        <p className={styles.userEmail}>{session.user.email}</p>
+                        <p className={styles.userEmail}>{user?.email || user?.name}</p>
                     </div>
                 </div>
 
@@ -586,6 +704,17 @@ const Admin = () => {
                     />
                 </div>
 
+                <div className={styles.reorderHint}>
+                    <span>
+                        {isSearchActive
+                            ? "Clear search to drag and reorder projects."
+                            : "Drag and drop cards to automatically update display order."}
+                    </span>
+                    {isReordering && (
+                        <span className={styles.reorderSaving}>Saving order...</span>
+                    )}
+                </div>
+
                 {loadingProjects ? (
                     <div className={styles.emptyState}>Loading projects...</div>
                 ) : filteredProjects.length === 0 ? (
@@ -599,14 +728,30 @@ const Admin = () => {
                             const imageCount = Array.isArray(project.projectPictureUrl)
                                 ? project.projectPictureUrl.length
                                 : 0;
+                            const isDragging = draggedId === project.id;
+                            const isDragOver =
+                                dragOverId === project.id && draggedId !== project.id;
 
                             return (
-                                <article key={project.id} className={styles.projectCard}>
+                                <article
+                                    key={project.id}
+                                    draggable={canDragReorder}
+                                    onDragStart={(e) => handleDragStart(e, project.id)}
+                                    onDragOver={(e) => handleDragOver(e, project.id)}
+                                    onDrop={(e) => handleDrop(e, project.id)}
+                                    onDragEnd={handleDragEnd}
+                                    className={`${styles.projectCard} ${
+                                        canDragReorder ? styles.cardDraggable : ""
+                                    } ${isDragging ? styles.cardDragging : ""} ${
+                                        isDragOver ? styles.cardDragOver : ""
+                                    }`}
+                                >
                                     <div className={styles.cardThumb}>
                                         {cover ? (
                                             <img
                                                 src={cover}
                                                 alt={project.projectName || "Project"}
+                                                draggable={false}
                                                 style={{
                                                     transform: `translateY(${
                                                         project.imageYPosition || 0
@@ -620,6 +765,15 @@ const Admin = () => {
                                         <span className={styles.orderBadge}>
                                             #{project.display_order ?? "—"}
                                         </span>
+                                        {canDragReorder && (
+                                            <span
+                                                className={styles.dragHandle}
+                                                aria-hidden="true"
+                                                title="Drag to reorder"
+                                            >
+                                                <FaGripVertical />
+                                            </span>
+                                        )}
                                     </div>
 
                                     <div className={styles.cardBody}>
@@ -1024,6 +1178,50 @@ const Admin = () => {
                 </form>
             </dialog>
         </div>
+    );
+};
+
+const Admin = () => {
+    if (!AUTH0_DOMAIN || !AUTH0_CLIENT_ID) {
+        return (
+            <div className={styles.authShell}>
+                <Helmet>
+                    <title>Admin | Cadance Studio</title>
+                    <meta name="robots" content="noindex, nofollow" />
+                </Helmet>
+                <div className={styles.authCard}>
+                    <img src={logo} alt="Cadance" className={styles.authLogo} />
+                    <h1 className={styles.authTitle}>AUTH0 NOT CONFIGURED</h1>
+                    <p className={styles.mutedText}>
+                        Add <code>VITE_AUTH0_DOMAIN</code> and{" "}
+                        <code>VITE_AUTH0_CLIENT_ID</code> to your <code>.env</code> file
+                        to enable admin sign-in.
+                    </p>
+                    <Link to="/" className={styles.backLink}>
+                        <FaArrowLeft /> Back to website
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
+    const authorizationParams = {
+        redirect_uri: `${window.location.origin}/admin`,
+        ...(AUTH0_AUDIENCE ? { audience: AUTH0_AUDIENCE } : {}),
+    };
+
+    return (
+        <Auth0Provider
+            domain={AUTH0_DOMAIN}
+            clientId={AUTH0_CLIENT_ID}
+            authorizationParams={authorizationParams}
+            cacheLocation="localstorage"
+            onRedirectCallback={() => {
+                window.history.replaceState({}, document.title, "/admin");
+            }}
+        >
+            <AdminDashboard />
+        </Auth0Provider>
     );
 };
 

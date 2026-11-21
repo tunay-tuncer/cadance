@@ -270,7 +270,22 @@
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.85rem;
+}
+
+.reorderHint {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.reorderSaving {
+    color: var(--accent);
+    font-weight: 600;
 }
 
 .tabs {
@@ -340,6 +355,43 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, opacity 0.16s ease;
+}
+
+.cardDraggable {
+    cursor: grab;
+}
+
+.cardDraggable:active {
+    cursor: grabbing;
+}
+
+.cardDragging {
+    opacity: 0.45;
+    border-style: dashed;
+    border-color: var(--accent);
+}
+
+.cardDragOver {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(41, 114, 245, 0.28), 0 8px 20px rgba(41, 114, 245, 0.14);
+    transform: translateY(-2px);
+}
+
+.dragHandle {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 0.45rem;
+    background: rgba(13, 13, 18, 0.72);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    pointer-events: none;
 }
 
 .cardThumb {

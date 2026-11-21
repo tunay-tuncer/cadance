@@ -34,8 +34,8 @@ const seoConfig = {
     },
     CONTACT: {
       title: "İletişim | Cadance Studio - Tadilat ve Proje Teklifi Alın",
-      description: "Trabzon merkezli Cadance Studio ile iletişime geçin. Tadilat, anahtar teslim mimari uygulama ve 3D görselleştirme ihtiyaçlarınız için profesyonel çözümler üretelim.",
-      keywords: "mimarlık ofisi iletişim, trabzon tadilat, iç mimar fiyatları, anahtar teslim proje teklifi, cadance studio iletişim",
+      description: "İzmir merkezli Cadance Studio ile iletişime geçin. Tadilat, anahtar teslim mimari uygulama ve 3D görselleştirme ihtiyaçlarınız için profesyonel çözümler üretelim.",
+      keywords: "mimarlık ofisi iletişim, izmir tadilat, iç mimar fiyatları, anahtar teslim proje teklifi, cadance studio iletişim",
       ogTitle: "İletişim | Cadance Studio",
       ogDescription: "Tadilat, uygulama ve mimari projeleriniz için bize ulaşın.",
       ogImage:"https://res.cloudinary.com/dabmjz0xr/image/upload/q_auto/v1773854589/CadanceMetaImage_uwqmp8.png" ,
