@@ -162,11 +162,19 @@
     border: 1px solid transparent;
 }
 
+.primaryBtn,
+.secondaryBtn,
+.ghostBtn {
+    height: 2.5rem;
+    padding: 0 1.05rem;
+    font-size: 0.85rem;
+    line-height: 1;
+    white-space: nowrap;
+}
+
 .primaryBtn {
     background: var(--accent);
     color: var(--textWhite);
-    padding: 0.6rem 1.05rem;
-    font-size: 0.85rem;
 }
 
 .primaryBtn:hover:not(:disabled) {
@@ -182,8 +190,6 @@
     background: var(--bgLight);
     color: var(--textBlack);
     border-color: #d1d5db;
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
 }
 
 .secondaryBtn:hover {
@@ -194,8 +200,6 @@
     background: transparent;
     color: #d1d5db;
     border-color: rgba(255, 255, 255, 0.2);
-    padding: 0.6rem 0.9rem;
-    font-size: 0.85rem;
 }
 
 .ghostBtn:hover {
@@ -405,9 +409,13 @@
 }
 
 .cardThumb img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    min-height: 100%;
+    display: block;
 }
 
 .noThumb {
@@ -671,7 +679,9 @@
 }
 
 .cropPreviewFrame {
-    height: 7.5rem;
+    position: relative;
+    width: 100%;
+    height: 9rem;
     border-radius: 0.5rem;
     overflow: hidden;
     background: #11131a;
@@ -679,9 +689,12 @@
 }
 
 .cropPreviewFrame img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
 }
 
 .imageList {

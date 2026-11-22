@@ -67,6 +67,17 @@ function parseDescription(description) {
     };
 }
 
+function isJwtExpiredError(error) {
+    if (!error) return false;
+    const msg = String(error.message || error.error_description || "");
+    return (
+        error.code === "PGRST301" ||
+        error.code === "PGRST303" ||
+        error.status === 401 ||
+        /jwt|expired|token.*invalid|invalid.*claim|login_required/i.test(msg)
+    );
+}
+
 const AdminDashboard = () => {
     const {
         isLoading: authLoading,
@@ -96,12 +107,27 @@ const AdminDashboard = () => {
     const [isReordering, setIsReordering] = useState(false);
 
     const [toast, setToast] = useState(null); // { type: 'success' | 'error', text: string }
+    const [sessionExpired, setSessionExpired] = useState(false);
+    const isRedirectingRef = useRef(false);
     const dialogRef = useRef(null);
     const fileInputRef = useRef(null);
 
     const showToast = useCallback((type, text) => {
         setToast({ type, text });
     }, []);
+
+    const handleSessionExpired = useCallback(() => {
+        setSessionExpired(true);
+        if (isRedirectingRef.current) return;
+        isRedirectingRef.current = true;
+        loginWithRedirect({
+            authorizationParams: {
+                redirect_uri: `${window.location.origin}/admin`,
+                connection: REQUIRED_AUTH0_CONNECTION,
+                prompt: "select_account",
+            },
+        });
+    }, [loginWithRedirect]);
 
     useEffect(() => {
         if (!toast) return;
@@ -116,16 +142,41 @@ const AdminDashboard = () => {
         }
         return createClient(SUPABASE_URL, SUPABASE_KEY, {
             accessToken: async () => {
-                if (AUTH0_AUDIENCE) {
-                    return await getAccessTokenSilently({
-                        authorizationParams: { audience: AUTH0_AUDIENCE },
-                    });
+                try {
+                    if (AUTH0_AUDIENCE) {
+                        return await getAccessTokenSilently({
+                            authorizationParams: { audience: AUTH0_AUDIENCE },
+                        });
+                    }
+                    let claims = await getIdTokenClaims();
+                    const isExpired =
+                        !claims?.__raw ||
+                        (claims.exp && claims.exp * 1000 <= Date.now() + 30_000);
+                    if (isExpired) {
+                        // Attempt silent refresh before redirecting to login
+                        await getAccessTokenSilently({ cacheMode: "off" });
+                        claims = await getIdTokenClaims();
+                        if (
+                            !claims?.__raw ||
+                            (claims.exp && claims.exp * 1000 <= Date.now() + 30_000)
+                        ) {
+                            handleSessionExpired();
+                            return null;
+                        }
+                    }
+                    return claims.__raw;
+                } catch {
+                    handleSessionExpired();
+                    return null;
                 }
-                const claims = await getIdTokenClaims();
-                return claims?.__raw ?? null;
             },
         });
-    }, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims]);
+    }, [
+        isAuthenticated,
+        getAccessTokenSilently,
+        getIdTokenClaims,
+        handleSessionExpired,
+    ]);
 
     const userEmail = user?.email?.toLowerCase() || "";
     const isGoogleConnection =
@@ -150,13 +201,17 @@ const AdminDashboard = () => {
             .order("id", { ascending: true });
 
         if (error) {
+            if (isJwtExpiredError(error)) {
+                handleSessionExpired();
+                return;
+            }
             showToast("error", `Failed to load projects: ${error.message}`);
             setProjects([]);
         } else {
             setProjects(data || []);
         }
         setLoadingProjects(false);
-    }, [dbClient, showToast]);
+    }, [dbClient, showToast, handleSessionExpired]);
 
     useEffect(() => {
         if (isAuthorized) {
@@ -383,6 +438,10 @@ const AdminDashboard = () => {
         setIsSaving(false);
 
         if (error) {
+            if (isJwtExpiredError(error)) {
+                handleSessionExpired();
+                return;
+            }
             showToast("error", `Save failed: ${error.message}`);
             return;
         }
@@ -409,6 +468,10 @@ const AdminDashboard = () => {
         setDeletingId(null);
 
         if (error) {
+            if (isJwtExpiredError(error)) {
+                handleSessionExpired();
+                return;
+            }
             showToast("error", `Delete failed: ${error.message}`);
             return;
         }
@@ -519,6 +582,10 @@ const AdminDashboard = () => {
 
         const failed = results.find((r) => r.error);
         if (failed) {
+            if (isJwtExpiredError(failed.error)) {
+                handleSessionExpired();
+                return;
+            }
             showToast("error", `Failed to save order: ${failed.error.message}`);
             fetchProjects();
             return;
@@ -534,13 +601,17 @@ const AdminDashboard = () => {
         </Helmet>
     );
 
-    if (authLoading) {
+    if (authLoading || sessionExpired) {
         return (
             <div className={styles.authShell}>
                 {helmetMeta}
                 <div className={styles.authCard}>
                     <img src={logo} alt="Cadance" className={styles.authLogo} />
-                    <p className={styles.mutedText}>Checking session...</p>
+                    <p className={styles.mutedText}>
+                        {sessionExpired
+                            ? "Session expired. Redirecting to login..."
+                            : "Checking session..."}
+                    </p>
                 </div>
             </div>
         );
@@ -1052,8 +1123,8 @@ const AdminDashboard = () => {
                                             </span>
                                             <input
                                                 type="range"
-                                                min={-50}
-                                                max={50}
+                                                min={-80}
+                                                max={20}
                                                 value={form.imageYPosition}
                                                 onChange={(e) =>
                                                     setForm((p) => ({
